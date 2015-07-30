@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   def index
-    @people = Person.page params[:page]
+    @people = Person.page(params[:page]).includes(:battings)
     render_json_api @people
   end
 
