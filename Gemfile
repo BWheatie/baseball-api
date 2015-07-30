@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "2.2.2"
 
 gem 'rails', '4.2.3'
 gem 'active_model_serializers', '0.10.0.rc2'
@@ -13,6 +13,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
+group :production do
+  gem 'rails_12factor'
+end
 group :development, :test do
   gem 'byebug'
   gem 'foreman'
