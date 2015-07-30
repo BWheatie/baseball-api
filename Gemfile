@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 ruby "2.2.2"
 
-gem 'rails', '4.2.3'
+gem 'rails-api'
+
+gem 'activerecord'
+gem 'actionmailer'
 gem 'active_model_serializers', '0.10.0.rc2'
 gem 'pg'
 gem 'puma'

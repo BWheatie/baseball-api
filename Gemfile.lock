@@ -83,17 +83,9 @@ GEM
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.3)
-      actionmailer (= 4.2.3)
-      actionpack (= 4.2.3)
-      actionview (= 4.2.3)
-      activejob (= 4.2.3)
-      activemodel (= 4.2.3)
-      activerecord (= 4.2.3)
-      activesupport (= 4.2.3)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.3)
-      sprockets-rails
+    rails-api (0.4.0)
+      actionpack (>= 3.2.11)
+      railties (>= 3.2.11)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -141,7 +133,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer
   active_model_serializers (= 0.10.0.rc2)
+  activerecord
   byebug
   coffee-rails (~> 4.1.0)
   foreman
@@ -150,7 +144,7 @@ DEPENDENCIES
   kaminari
   pg
   puma
-  rails (= 4.2.3)
+  rails-api
   rails_12factor
   sass-rails (~> 5.0)
   turbolinks
