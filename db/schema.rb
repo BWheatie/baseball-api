@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150730153109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "AllstarFull", id: false, force: :cascade do |t|
     t.string  "playerID",    limit: 18, default: "", null: false
@@ -89,7 +90,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.float   "votesFirst"
   end
 
-  create_table "Batting", id: false, force: :cascade do |t|
+  create_table "Batting", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string  "playerID",  limit: 18, default: "", null: false
     t.integer "yearID",               default: 0,  null: false
     t.integer "stint",                default: 0,  null: false
@@ -115,6 +116,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "GIDP"
     t.integer "G_old"
   end
+
+  add_index "Batting", ["id"], name: "Batting_id_key", unique: true, using: :btree
 
   create_table "BattingPost", id: false, force: :cascade do |t|
     t.integer "yearID",              default: 0,  null: false
