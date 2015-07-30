@@ -7,4 +7,5 @@ class Person < ActiveRecord::Base
   has_many :fieldingposts, foreign_key: "playerID"
   has_many :pitchings, foreign_key: "playerID"
   has_many :pitchingposts, foreign_key: "playerID"
+  has_and_belongs_to_many :teams, foreign_key: "teamID"
 end
