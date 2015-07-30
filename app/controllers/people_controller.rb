@@ -1,11 +1,11 @@
 class PeopleController < ApplicationController
   def index
     @people = Person.page params[:page]
-    render json: @people, meta: { total: @people.total_count, pages: (@people.total_count / @people.size) }
+    render_json_api @people
   end
 
   def show
     @person = Person.find(params[:id])
-    render json: @person
+    render_json_api @person
   end
 end
