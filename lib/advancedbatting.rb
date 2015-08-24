@@ -1,0 +1,2 @@
+class AdvancedBatting < BattingCareer
+end
