@@ -14,5 +14,6 @@ gem 'jbuilder', '~> 2.0'
 group :development, :test do
   gem 'byebug'
   gem 'foreman'
+  gem 'rspec-rails'
 end
 
