@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150824163501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "AllstarFull", id: false, force: :cascade do |t|
     t.string  "playerID",    limit: 18, default: "", null: false
@@ -235,32 +236,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "rank"
   end
 
-  create_table "Master", primary_key: "playerID", force: :cascade do |t|
-    t.integer  "birthYear"
-    t.integer  "birthMonth"
-    t.integer  "birthDay"
-    t.string   "birthCountry", limit: 100
-    t.string   "birthState",   limit: 4
-    t.string   "birthCity",    limit: 100
-    t.integer  "deathYear"
-    t.integer  "deathMonth"
-    t.integer  "deathDay"
-    t.string   "deathCountry", limit: 100
-    t.string   "deathState",   limit: 4
-    t.string   "deathCity",    limit: 100
-    t.string   "nameFirst",    limit: 100
-    t.string   "nameLast",     limit: 100
-    t.string   "nameGiven",    limit: 510
-    t.integer  "weight"
-    t.float    "height"
-    t.string   "bats",         limit: 2
-    t.string   "throws",       limit: 2
-    t.datetime "debut"
-    t.datetime "finalGame"
-    t.string   "retroID",      limit: 18
-    t.string   "bbrefID",      limit: 18
-  end
-
   create_table "Pitching", id: false, force: :cascade do |t|
     t.string  "playerID", limit: 18, default: "", null: false
     t.integer "yearID",              default: 0,  null: false
@@ -422,6 +397,31 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "G"
     t.integer "W"
     t.integer "L"
+  end
+
+  create_table "players", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "legacy_id"
+    t.integer  "birthYear"
+    t.integer  "birthMonth"
+    t.integer  "birthDay"
+    t.string   "birthCountry"
+    t.string   "birthState"
+    t.string   "birthCity"
+    t.integer  "deathYear"
+    t.integer  "deathMonth"
+    t.integer  "deathDay"
+    t.string   "deathCountry"
+    t.string   "deathState"
+    t.string   "deathCity"
+    t.string   "nameFirst"
+    t.string   "nameLast"
+    t.string   "nameGiven"
+    t.integer  "weight"
+    t.float    "height"
+    t.string   "bats"
+    t.string   "throws"
+    t.datetime "debut"
+    t.datetime "finalGame"
   end
 
 end
