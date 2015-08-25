@@ -11,46 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824163501) do
+ActiveRecord::Schema.define(version: 20150825210041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
-
-  create_table "AllstarFull", id: false, force: :cascade do |t|
-    t.string  "playerID",    limit: 18, default: "", null: false
-    t.integer "yearID",                 default: 0,  null: false
-    t.integer "gameNum",                default: 0,  null: false
-    t.string  "gameID",      limit: 24
-    t.string  "teamID",      limit: 6
-    t.string  "lgID",        limit: 4
-    t.integer "GP"
-    t.integer "startingPos"
-  end
-
-  create_table "Appearances", id: false, force: :cascade do |t|
-    t.integer "yearID",               default: 0,  null: false
-    t.string  "teamID",    limit: 6,  default: "", null: false
-    t.string  "lgID",      limit: 4
-    t.string  "playerID",  limit: 18, default: "", null: false
-    t.integer "G_all"
-    t.integer "GS"
-    t.integer "G_batting"
-    t.integer "G_defense"
-    t.integer "G_p"
-    t.integer "G_c"
-    t.integer "G_1b"
-    t.integer "G_2b"
-    t.integer "G_3b"
-    t.integer "G_ss"
-    t.integer "G_lf"
-    t.integer "G_cf"
-    t.integer "G_rf"
-    t.integer "G_of"
-    t.integer "G_dh"
-    t.integer "G_ph"
-    t.integer "G_pr"
-  end
 
   create_table "AwardsManagers", id: false, force: :cascade do |t|
     t.string  "playerID", limit: 20,  default: "", null: false
@@ -90,33 +55,6 @@ ActiveRecord::Schema.define(version: 20150824163501) do
     t.float   "votesFirst"
   end
 
-  create_table "Batting", id: false, force: :cascade do |t|
-    t.string  "playerID",  limit: 18, default: "", null: false
-    t.integer "yearID",               default: 0,  null: false
-    t.integer "stint",                default: 0,  null: false
-    t.string  "teamID",    limit: 6
-    t.string  "lgID",      limit: 4
-    t.integer "G"
-    t.integer "G_batting"
-    t.integer "AB"
-    t.integer "R"
-    t.integer "H"
-    t.integer "2B"
-    t.integer "3B"
-    t.integer "HR"
-    t.integer "RBI"
-    t.integer "SB"
-    t.integer "CS"
-    t.integer "BB"
-    t.integer "SO"
-    t.integer "IBB"
-    t.integer "HBP"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
-    t.integer "G_old"
-  end
-
   create_table "BattingPost", id: false, force: :cascade do |t|
     t.integer "yearID",              default: 0,  null: false
     t.string  "round",    limit: 20, default: "", null: false
@@ -146,27 +84,6 @@ ActiveRecord::Schema.define(version: 20150824163501) do
     t.string  "playerID", limit: 18
     t.string  "schoolID", limit: 30
     t.integer "yearID"
-  end
-
-  create_table "Fielding", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 18, default: "", null: false
-    t.integer "yearID",              default: 0,  null: false
-    t.integer "stint",               default: 0,  null: false
-    t.string  "teamID",   limit: 6
-    t.string  "lgID",     limit: 4
-    t.string  "POS",      limit: 4,  default: "", null: false
-    t.integer "G"
-    t.integer "GS"
-    t.integer "InnOuts"
-    t.integer "PO"
-    t.integer "A"
-    t.integer "E"
-    t.integer "DP"
-    t.integer "PB"
-    t.integer "WP"
-    t.integer "SB"
-    t.integer "CS"
-    t.float   "ZR"
   end
 
   create_table "FieldingOF", id: false, force: :cascade do |t|
@@ -210,19 +127,6 @@ ActiveRecord::Schema.define(version: 20150824163501) do
     t.string  "needed_note", limit: 50
   end
 
-  create_table "Managers", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 20
-    t.integer "yearID",              default: 0,  null: false
-    t.string  "teamID",   limit: 6,  default: "", null: false
-    t.string  "lgID",     limit: 4
-    t.integer "inseason",            default: 0,  null: false
-    t.integer "G"
-    t.integer "W"
-    t.integer "L"
-    t.integer "rank"
-    t.string  "plyrMgr",  limit: 2
-  end
-
   create_table "ManagersHalf", id: false, force: :cascade do |t|
     t.string  "playerID", limit: 20, default: "", null: false
     t.integer "yearID",              default: 0,  null: false
@@ -234,39 +138,6 @@ ActiveRecord::Schema.define(version: 20150824163501) do
     t.integer "W"
     t.integer "L"
     t.integer "rank"
-  end
-
-  create_table "Pitching", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 18, default: "", null: false
-    t.integer "yearID",              default: 0,  null: false
-    t.integer "stint",               default: 0,  null: false
-    t.string  "teamID",   limit: 6
-    t.string  "lgID",     limit: 4
-    t.integer "W"
-    t.integer "L"
-    t.integer "G"
-    t.integer "GS"
-    t.integer "CG"
-    t.integer "SHO"
-    t.integer "SV"
-    t.integer "IPouts"
-    t.integer "H"
-    t.integer "ER"
-    t.integer "HR"
-    t.integer "BB"
-    t.integer "SO"
-    t.float   "BAOpp"
-    t.float   "ERA"
-    t.integer "IBB"
-    t.integer "WP"
-    t.integer "HBP"
-    t.integer "BK"
-    t.integer "BFP"
-    t.integer "GF"
-    t.integer "R"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
   end
 
   create_table "PitchingPost", id: false, force: :cascade do |t|
@@ -329,7 +200,185 @@ ActiveRecord::Schema.define(version: 20150824163501) do
     t.integer "ties"
   end
 
-  create_table "Teams", id: false, force: :cascade do |t|
+  create_table "TeamsFranchises", primary_key: "franchID", force: :cascade do |t|
+    t.string "franchName", limit: 100
+    t.string "active",     limit: 4
+    t.string "NAassoc",    limit: 6
+  end
+
+  create_table "TeamsHalf", id: false, force: :cascade do |t|
+    t.integer "yearID",           default: 0,  null: false
+    t.string  "lgID",   limit: 4, default: "", null: false
+    t.string  "teamID", limit: 6, default: "", null: false
+    t.string  "Half",   limit: 2, default: "", null: false
+    t.string  "divID",  limit: 2
+    t.string  "DivWin", limit: 2
+    t.integer "Rank"
+    t.integer "G"
+    t.integer "W"
+    t.integer "L"
+  end
+
+  create_table "allstars", id: false, force: :cascade do |t|
+    t.string  "playerID",    limit: 18, default: "", null: false
+    t.integer "yearID",                 default: 0,  null: false
+    t.integer "gameNum",                default: 0,  null: false
+    t.string  "gameID",      limit: 24
+    t.string  "teamID",      limit: 6
+    t.string  "lgID",        limit: 4
+    t.integer "GP"
+    t.integer "startingPos"
+  end
+
+  create_table "appearances", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "yearID",              default: 0,  null: false
+    t.string  "teamID",    limit: 6, default: "", null: false
+    t.string  "lgID",      limit: 4
+    t.integer "G_all"
+    t.integer "GS"
+    t.integer "G_batting"
+    t.integer "G_defense"
+    t.integer "G_p"
+    t.integer "G_c"
+    t.integer "G_1b"
+    t.integer "G_2b"
+    t.integer "G_3b"
+    t.integer "G_ss"
+    t.integer "G_lf"
+    t.integer "G_cf"
+    t.integer "G_rf"
+    t.integer "G_of"
+    t.integer "G_dh"
+    t.integer "G_ph"
+    t.integer "G_pr"
+    t.uuid    "player_id"
+  end
+
+  create_table "appearences", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "battings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "yearID",              default: 0, null: false
+    t.integer "stint",               default: 0, null: false
+    t.string  "teamID",    limit: 6
+    t.string  "lgID",      limit: 4
+    t.integer "G"
+    t.integer "G_batting"
+    t.integer "AB"
+    t.integer "R"
+    t.integer "H"
+    t.integer "2B"
+    t.integer "3B"
+    t.integer "HR"
+    t.integer "RBI"
+    t.integer "SB"
+    t.integer "CS"
+    t.integer "BB"
+    t.integer "SO"
+    t.integer "IBB"
+    t.integer "HBP"
+    t.integer "SH"
+    t.integer "SF"
+    t.integer "GIDP"
+    t.integer "G_old"
+    t.uuid    "player_id"
+  end
+
+  create_table "fieldings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "yearID",              default: 0,  null: false
+    t.integer "stint",               default: 0,  null: false
+    t.string  "teamID",    limit: 6
+    t.string  "lgID",      limit: 4
+    t.string  "POS",       limit: 4, default: "", null: false
+    t.integer "G"
+    t.integer "GS"
+    t.integer "InnOuts"
+    t.integer "PO"
+    t.integer "A"
+    t.integer "E"
+    t.integer "DP"
+    t.integer "PB"
+    t.integer "WP"
+    t.integer "SB"
+    t.integer "CS"
+    t.float   "ZR"
+    t.uuid    "player_id"
+  end
+
+  create_table "managers", id: false, force: :cascade do |t|
+    t.string  "playerID", limit: 20
+    t.integer "yearID",              default: 0,  null: false
+    t.string  "teamID",   limit: 6,  default: "", null: false
+    t.string  "lgID",     limit: 4
+    t.integer "inseason",            default: 0,  null: false
+    t.integer "G"
+    t.integer "W"
+    t.integer "L"
+    t.integer "rank"
+    t.string  "plyrMgr",  limit: 2
+  end
+
+  create_table "pitchings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "yearID",              default: 0, null: false
+    t.integer "stint",               default: 0, null: false
+    t.string  "teamID",    limit: 6
+    t.string  "lgID",      limit: 4
+    t.integer "W"
+    t.integer "L"
+    t.integer "G"
+    t.integer "GS"
+    t.integer "CG"
+    t.integer "SHO"
+    t.integer "SV"
+    t.integer "IPouts"
+    t.integer "H"
+    t.integer "ER"
+    t.integer "HR"
+    t.integer "BB"
+    t.integer "SO"
+    t.float   "BAOpp"
+    t.float   "ERA"
+    t.integer "IBB"
+    t.integer "WP"
+    t.integer "HBP"
+    t.integer "BK"
+    t.integer "BFP"
+    t.integer "GF"
+    t.integer "R"
+    t.integer "SH"
+    t.integer "SF"
+    t.integer "GIDP"
+    t.uuid    "player_id"
+  end
+
+  create_table "players", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "legacy_id"
+    t.integer  "birthYear"
+    t.integer  "birthMonth"
+    t.integer  "birthDay"
+    t.string   "birthCountry"
+    t.string   "birthState"
+    t.string   "birthCity"
+    t.integer  "deathYear"
+    t.integer  "deathMonth"
+    t.integer  "deathDay"
+    t.string   "deathCountry"
+    t.string   "deathState"
+    t.string   "deathCity"
+    t.string   "nameFirst"
+    t.string   "nameLast"
+    t.string   "nameGiven"
+    t.integer  "weight"
+    t.float    "height"
+    t.string   "bats"
+    t.string   "throws"
+    t.datetime "debut"
+    t.datetime "finalGame"
+  end
+
+  create_table "teams", id: false, force: :cascade do |t|
     t.integer "yearID",                     default: 0,  null: false
     t.string  "lgID",           limit: 4,   default: "", null: false
     t.string  "teamID",         limit: 6,   default: "", null: false
@@ -378,50 +427,6 @@ ActiveRecord::Schema.define(version: 20150824163501) do
     t.string  "teamIDBR",       limit: 6
     t.string  "teamIDlahman45", limit: 6
     t.string  "teamIDretro",    limit: 6
-  end
-
-  create_table "TeamsFranchises", primary_key: "franchID", force: :cascade do |t|
-    t.string "franchName", limit: 100
-    t.string "active",     limit: 4
-    t.string "NAassoc",    limit: 6
-  end
-
-  create_table "TeamsHalf", id: false, force: :cascade do |t|
-    t.integer "yearID",           default: 0,  null: false
-    t.string  "lgID",   limit: 4, default: "", null: false
-    t.string  "teamID", limit: 6, default: "", null: false
-    t.string  "Half",   limit: 2, default: "", null: false
-    t.string  "divID",  limit: 2
-    t.string  "DivWin", limit: 2
-    t.integer "Rank"
-    t.integer "G"
-    t.integer "W"
-    t.integer "L"
-  end
-
-  create_table "players", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "legacy_id"
-    t.integer  "birthYear"
-    t.integer  "birthMonth"
-    t.integer  "birthDay"
-    t.string   "birthCountry"
-    t.string   "birthState"
-    t.string   "birthCity"
-    t.integer  "deathYear"
-    t.integer  "deathMonth"
-    t.integer  "deathDay"
-    t.string   "deathCountry"
-    t.string   "deathState"
-    t.string   "deathCity"
-    t.string   "nameFirst"
-    t.string   "nameLast"
-    t.string   "nameGiven"
-    t.integer  "weight"
-    t.float    "height"
-    t.string   "bats"
-    t.string   "throws"
-    t.datetime "debut"
-    t.datetime "finalGame"
   end
 
 end
