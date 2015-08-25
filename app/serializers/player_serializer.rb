@@ -1,3 +1,6 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :nameFirst, :nameLast, :nameGiven, :birthDay, :birthMonth, :birthYear, :birthState, :birthCity, :weight, :height,:bats, :throws, :debut
+  attributes :id, :nameFirst, :nameLast, :nameGiven, :birthDay, :birthMonth, :birthYear, :birthState, :birthCity
+  attributes :weight, :height, :bats, :throws, :debut
+
+  url :player
 end
