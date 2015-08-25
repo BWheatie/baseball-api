@@ -1,3 +1,3 @@
 class Team < ActiveRecord::Base
-  has_many :people, foreign_key: "playerID"
+  has_many :players
 end
