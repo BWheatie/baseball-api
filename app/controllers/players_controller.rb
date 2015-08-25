@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   end
 
   def index
-    render_json_api Player.all
+    render_json_api Player.page(params[:page])
   end
 
   def career

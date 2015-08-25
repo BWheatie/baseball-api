@@ -71,6 +71,9 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -159,7 +162,6 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -172,6 +174,7 @@ DEPENDENCIES
   foreman
   jbuilder
   jquery-rails
+  kaminari
   pg
   puma
   rails
@@ -181,7 +184,6 @@ DEPENDENCIES
   sass-rails
   turbolinks
   uglifier
-  will_paginate
 
 BUNDLED WITH
    1.10.6
