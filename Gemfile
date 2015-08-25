@@ -1,15 +1,17 @@
 source 'https://rubygems.org'
 
-
-gem 'rails', '4.2.3'
-gem 'pg'
-gem 'puma'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
+gem 'will_paginate'
+gem 'pg'
+gem 'puma'
+gem 'rails'
+gem 'sass-rails'
+gem 'uglifier'
+
+
 
 group :development, :test do
   gem 'byebug'
