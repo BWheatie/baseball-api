@@ -5,9 +5,11 @@ HOST: http://polls.apiblueprint.org/
 
 This API uses an open source database from Sean Lehman to render all historical baseball stats. Included are various advanced SABRmetrics.
 
+# Group Player
+
 ## Players Index [/players]
 
-### List All Players [GET]
+### List Players [GET]
 
 + Response 200 (application/json)
 
@@ -34,7 +36,21 @@ This API uses an open source database from Sean Lehman to render all historical 
             }
         ]
         
-## Player Reports [/players/player_id/report]
+## Player [/players/{id}]
+
++ Parameters
+    + id (string) ... UUID of player
+    
+### Player [GET]
+
++ Response 200 (application/json)
+
+        {"data":{"id":"541fd425-c4ab-4618-9521-4b3e1362b610","type":"players","attributes":{"nameFirst":"David","nameLast":"Aardsma","nameGiven":"David Allan","birthDay":27,"birthMonth":12,"birthYear":1981,"birthState":"CO","birthCity":"Denver","weight":205,"height":75.0,"bats":"R","throws":"R","debut":"2004-04-06T05:00:00.000Z"},"relationships":{"battings":{"data":[{"type":"battings","id":"43b7b5ea-e464-48f2-a9f4-3f529a6d27e4"},{"type":"battings","id":"5f8342d6-adb6-49ca-ba33-210762e52c76"},{"type":"battings","id":"6b5ce415-4988-4861-a933-15b2ee6c068b"},{"type":"battings","id":"9150a857-a8e5-4306-a33a-a9adfc2d5428"},{"type":"battings","id":"99dd34d4-9061-409a-a502-16182da20d49"},{"type":"battings","id":"e50e1dfa-68f4-4770-bb71-7b5e99ee1487"},{"type":"battings","id":"e8277c34-1553-405b-a245-f1c4edacffbb"},{"type":"battings","id":"fa4a2a41-8b49-4c94-b969-71dbbf6af56e"}]},"fieldings":{"data":[{"type":"fieldings","id":"36877d17-1ce9-462e-9571-8fcfd441fc6a"},{"type":"fieldings","id":"437794a2-3320-4a2b-847a-c1c53930253c"},{"type":"fieldings","id":"78008097-15b0-449b-bbd9-8e91200f1d96"},{"type":"fieldings","id":"a4e656a8-ffd6-491f-af58-50058762d04d"},{"type":"fieldings","id":"b6fe1823-2fc8-4f2c-a43a-e66c680eef5a"},{"type":"fieldings","id":"c40cb906-496a-4f90-b395-9c0e3fc47c89"},{"type":"fieldings","id":"dafd4828-382f-4799-8b13-857fb1282515"},{"type":"fieldings","id":"e07e0c47-309b-43dd-8b5e-d787f1da8e2d"}]},"pitchings":{"data":[{"type":"pitchings","id":"5701e9a9-5ec0-4c42-b7d6-a84f9e096ef0"},{"type":"pitchings","id":"581fbb06-f32f-49d5-9161-903bd41fe58c"},{"type":"pitchings","id":"9572f1d8-91c3-486f-bd6e-abe7adee3d27"},{"type":"pitchings","id":"9835f7b9-996f-4975-a526-f74b4ff29fc9"},{"type":"pitchings","id":"9c526d9e-330b-4156-9470-5e5cc59390e8"},{"type":"pitchings","id":"a8ec4d73-c195-4958-9ef3-cec6394a3374"},{"type":"pitchings","id":"b23fb5e7-cb82-4edc-9fa6-5b481aa66363"},{"type":"pitchings","id":"c7166e03-b258-432c-9b09-8900429bad46"}]},"report":{"data":{"type":"reports","id":"e0ef1bd3-3af8-4ac7-9e8c-b16b4506afb5"}}}}
+
+## Player Reports [/players/{id}/report]
+
++ Parameters
+    + id (string) ... UUID of player
 
 ### Career Report [GET]
 
