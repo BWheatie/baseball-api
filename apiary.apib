@@ -13,68 +13,43 @@ This API uses an open source database from Sean Lehman to render all historical 
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
+                id: "541fd425-c4ab-4618-9521-4b3e1362b610",
+                type: "players",
+                attributes: {
+                    nameFirst: "David",
+                    nameLast: "Aardsma",
+                    nameGiven: "David Allan",
+                    birthDay: 27,
+                    birthMonth: 12,
+                    birthYear: 1981,
+                    birthState: "CO",
+                    birthCity: "Denver",
+                    weight: 205,
+                    height: 75,
+                    bats: "R",
+                    throws: "R",
+                    debut: "2004-04-06T05:00:00.000Z"
                     }
                 ]
             }
         ]
+        
+## Player Reports [/players/player_id/report]
 
-### Create a New Question [POST]
+### Career Report [GET]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+This report will generate basic batting, fielding, and pitching stats for any players career. This report also includes a player comparison value. This can be used to compare like players.
 
-+ Request (application/json)
++ Response 200 (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+            id: "8195d33b-926d-46ca-ba9e-62eaa1854444",
+            type: "reports",
+            attributes: {
+                BA: 0,
+                H: 271,
+                RBI: 0,
+                HR: 35,
+                batting_score: -939.2
             }
+        }
