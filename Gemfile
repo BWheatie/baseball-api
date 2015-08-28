@@ -19,6 +19,10 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :test do
+  gem "codeclimate-test-reporter"
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'foreman'
