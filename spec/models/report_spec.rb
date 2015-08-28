@@ -16,7 +16,7 @@ RSpec.describe Report, type: :model do
       player = Player.create
       Fielding.create(PO: 5, A: 5, E: 1, player: player)
       report = Report.new(player)
-      expect(report.FP).to eq(0.9)
+      expect(report.FP).to be_within(0.1).of(0.9)
     end
   end
 
