@@ -1,5 +1,5 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :BA, :H, :RBI, :HR
+  attributes :BA, :H, :RBI, :HR, :batting_score
   def BA
     object.BA.round(3)
   end

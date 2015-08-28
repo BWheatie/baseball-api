@@ -9,6 +9,10 @@ class Report
     SecureRandom.uuid
   end
 
+  def batting_score
+    Comparison.new(self).batting_score - 1000
+  end
+
   def G
     bats = @player.battings.pluck(:G)
     bats.reduce(:+)
@@ -144,127 +148,127 @@ class Report
 
   def W
     pitch = @player.pitchings.pluck(:W)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def L
     pitch = @player.pitchings.pluck(:L)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def G
     pitch = @player.pitchings.pluck(:G)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def GS
     pitch = @player.pitchings.pluck(:GS)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def CG
     pitch = @player.pitchings.pluck(:CG)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def SHO
     pitch = @player.pitchings.pluck(:SHO)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def SV
     pitch = @player.pitchings.pluck(:SV)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def IPouts
     pitch = @player.pitchings.pluck(:IPouts)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def H
     pitch = @player.pitchings.pluck(:H)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def ER
     pitch = @player.pitchings.pluck(:ER)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def HR
     pitch = @player.pitchings.pluck(:HR)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def BB
     pitch = @player.pitchings.pluck(:BB)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def SO
     pitch = @player.pitchings.pluck(:SO)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def BAOpp
     pitch = @player.pitchings.pluck(:BAOpp)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def ERA
     pitch = @player.pitchings.pluck(:ERA)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def IBB
     pitch = @player.pitchings.pluck(:IBB)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def WP
     pitch = @player.pitchings.pluck(:WP)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def HBP
     pitch = @player.pitchings.pluck(:HBP)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def BK
     pitch = @player.pitchings.pluck(:BK)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def BFP
     pitch = @player.pitchings.pluck(:BFP)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def GF
     pitch = @player.pitchings.pluck(:GF)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def R
     pitch = @player.pitchings.pluck(:W)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def SH
     pitch = @player.pitchings.pluck(:SH)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def SF
     pitch = @player.pitchings.pluck(:SF)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def GIDP
     pitch = @player.pitchings.pluck(:GIDP)
-    pitch.{|p| p[0]}.reduce(:+)
+    pitch.reduce(:+)
   end
 
   def IP
