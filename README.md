@@ -1,1 +1,3 @@
 [![Build Status](https://travis-ci.org/BWheatie/baseball-api.svg?branch=master)](https://travis-ci.org/BWheatie/baseball-api)
+[![Code Climate](https://codeclimate.com/github/BWheatie/baseball-api/badges/gpa.svg)](https://codeclimate.com/github/BWheatie/baseball-api)
+[![Test Coverage](https://codeclimate.com/github/BWheatie/baseball-api/badges/coverage.svg)](https://codeclimate.com/github/BWheatie/baseball-api/coverage)
