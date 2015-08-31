@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/BWheatie/baseball-api.svg?branch=master)](https://travis-ci.org/BWheatie/baseball-api)
