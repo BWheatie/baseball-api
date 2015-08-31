@@ -1,7 +1,8 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :BA, :H, :RBI, :HR, :batting_score
-  def BA
-    object.BA.round(3)
+  attributes :AVG, :H, :RBI, :HR, :uuid
+
+  def AVG
+    object.AVG.round(3)
   end
 
   def SLG
@@ -30,6 +31,10 @@ class ReportSerializer < ActiveModel::Serializer
 
   def IP
     object.IP.round(3)
+  end
+
+  def batting_score
+    object.batting_score.round(3)
   end
 
 end

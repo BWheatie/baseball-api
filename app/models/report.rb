@@ -9,8 +9,12 @@ class Report
     SecureRandom.uuid
   end
 
+  def uuid
+    SecureRandom.uuid
+  end
+
   def batting_score
-    Comparison.new(self).batting_score - 1000
+    Comparison.new(self).batting_score
   end
 
   def G
@@ -98,7 +102,7 @@ class Report
     bats.reduce(:+)
   end
 
-  def BA
+  def AVG
     bats = @player.battings.pluck(:H, :AB)
     bats.map{|b| b[0]}.reduce(:+) / bats.map{|b| b[1]}.reduce(:+).to_f
   end
@@ -120,7 +124,7 @@ class Report
   end
 
   def ISO
-    self.SLG - self.BA
+    self.SLG - self.AVG
   end
 
   def BABIP
@@ -295,6 +299,7 @@ class Report
     pitch = @player.pitchings.pluck(:BB)
     (9 * (pitch.map{|p| p[0]}.reduce(:+)).to_f / IP)
   end
+
   private
   def single
     bats = @player.battings.pluck(:H, :"2B", :"3B", :HR)

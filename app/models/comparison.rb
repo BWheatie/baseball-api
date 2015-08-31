@@ -6,7 +6,7 @@ class Comparison
   def batting_score
     score = (@report.G / 20.0) + (@report.AB / 75.0) + (@report.R / 10.0) + (@report.H / 15.0) + (@report.Double / 5.0)
     score += (@report.Triple / 4.0) +(@report.HR / 2.0) + (@report.RBI / 10.0) + (@report.BB / 25.0) + (@report.SO / 150.0)
-    score += (@report.SB / 20.0) + (@report.BA / 0.001) + (@report.SLG / 0.002)
+    score += (@report.SB / 20.0) + (@report.AVG / 0.001) + (@report.SLG / 0.002).to_f
   end
 end
 
