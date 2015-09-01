@@ -12,4 +12,9 @@ class Player < ActiveRecord::Base
   def report
     Report.new(self)
   end
+
+  def self.search
+    Player.where("nameFirst LIKE ? OR nameLast OR LIKE ? OR nameGiven LIKE ?", "%#{query}%")
+  end
+
 end

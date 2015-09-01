@@ -10,4 +10,8 @@ class PlayersController < ApplicationController
   def report
     render_json_api Player.find(params[:player_id]).report
   end
+
+  def search
+    render_json_api Player.find(params[:search])
+  end
 end
