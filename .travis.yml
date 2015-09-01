@@ -3,3 +3,10 @@ script:
   - xvfb-run script/test
 rvm:
   - 2.2.2
+before_install:
+  - npm install -g dredd
+before_script:
+  - dredd
+addons:
+code_climate:
+  repo_token: c0f6ab05422098aa565db46630a8573e0688fe03e925b368bbce48a54af0df0e
