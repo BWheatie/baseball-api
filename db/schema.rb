@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825210041) do
+ActiveRecord::Schema.define(version: 20150903184139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -355,27 +355,27 @@ ActiveRecord::Schema.define(version: 20150825210041) do
 
   create_table "players", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "legacy_id"
-    t.integer  "birthYear"
-    t.integer  "birthMonth"
-    t.integer  "birthDay"
-    t.string   "birthCountry"
-    t.string   "birthState"
-    t.string   "birthCity"
-    t.integer  "deathYear"
-    t.integer  "deathMonth"
-    t.integer  "deathDay"
-    t.string   "deathCountry"
-    t.string   "deathState"
-    t.string   "deathCity"
-    t.string   "nameFirst"
-    t.string   "nameLast"
-    t.string   "nameGiven"
+    t.integer  "birth_year"
+    t.integer  "birth_month"
+    t.integer  "birth_day"
+    t.string   "birth_country"
+    t.string   "birth_state"
+    t.string   "birth_city"
+    t.integer  "death_year"
+    t.integer  "death_month"
+    t.integer  "death_day"
+    t.string   "death_country"
+    t.string   "death_state"
+    t.string   "death_city"
+    t.string   "name_first"
+    t.string   "name_last"
+    t.string   "name_given"
     t.integer  "weight"
     t.float    "height"
     t.string   "bats"
     t.string   "throws"
     t.datetime "debut"
-    t.datetime "finalGame"
+    t.datetime "final_game"
   end
 
   create_table "teams", id: false, force: :cascade do |t|

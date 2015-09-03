@@ -1,4 +1,5 @@
 class Player < ActiveRecord::Base
+  validates :name_first, :name_last, presence: true
   has_many :appearances
   has_many :battings
   has_many :battingposts
@@ -14,7 +15,8 @@ class Player < ActiveRecord::Base
   end
 
   def self.search(query)
-    Player.where("nameFirst LIKE ? OR nameLast OR LIKE ? OR nameGiven LIKE ?", "%#{query}%")
+    q = "%#{query}%"
+    Player.where("name_first ILIKE ? OR name_last ILIKE ?", q, q)
   end
 
 end

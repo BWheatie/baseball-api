@@ -4,8 +4,8 @@ class PlayersController < ApplicationController
   end
 
   def index
-    if params[:query]
-      render_json_api Player.search.page(params[:query])
+    if params[:q]
+      render_json_api Player.search(params[:q])
     else
       render_json_api Player.page(params[:page])
     end
@@ -14,5 +14,4 @@ class PlayersController < ApplicationController
   def report
     render_json_api Player.find(params[:player_id]).report
   end
-
 end
