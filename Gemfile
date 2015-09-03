@@ -5,6 +5,7 @@ gem 'rails-api'
 
 gem 'active_model_serializers', '0.10.0.rc2'
 gem 'coffee-rails'
+gem 'faker'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'jbuilder'
@@ -29,7 +30,7 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'foreman'
-  gem 'pry'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
