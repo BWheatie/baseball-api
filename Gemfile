@@ -30,7 +30,7 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'foreman'
-  gem 'pry-rails'
+  gem 'pry'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
