@@ -1,4 +1,3 @@
-class PitchingPost < ActiveRecord::Base
-  self.table_name = "Pitchingpost"
-  belongs_to :player, foreign_key: "playerID", primary_key: :legacy_id
+class Pitchingpost < ActiveRecord::Base
+  belongs_to :player
 end
