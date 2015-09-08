@@ -7,7 +7,7 @@ class Player < ActiveRecord::Base
   has_many :fieldingposts
   has_many :pitchings
   has_many :pitchingposts
-  has_many :salaries
+  has_many :appearances
   has_and_belongs_to_many :teams
 
   def report
