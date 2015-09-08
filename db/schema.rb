@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903184139) do
+ActiveRecord::Schema.define(version: 20150908060954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,64 +55,10 @@ ActiveRecord::Schema.define(version: 20150903184139) do
     t.float   "votesFirst"
   end
 
-  create_table "BattingPost", id: false, force: :cascade do |t|
-    t.integer "yearID",              default: 0,  null: false
-    t.string  "round",    limit: 20, default: "", null: false
-    t.string  "playerID", limit: 18, default: "", null: false
-    t.string  "teamID",   limit: 6
-    t.string  "lgID",     limit: 4
-    t.integer "G"
-    t.integer "AB"
-    t.integer "R"
-    t.integer "H"
-    t.integer "2B"
-    t.integer "3B"
-    t.integer "HR"
-    t.integer "RBI"
-    t.integer "SB"
-    t.integer "CS"
-    t.integer "BB"
-    t.integer "SO"
-    t.integer "IBB"
-    t.integer "HBP"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
-  end
-
   create_table "CollegePlaying", id: false, force: :cascade do |t|
     t.string  "playerID", limit: 18
     t.string  "schoolID", limit: 30
     t.integer "yearID"
-  end
-
-  create_table "FieldingOF", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 18, default: "", null: false
-    t.integer "yearID",              default: 0,  null: false
-    t.integer "stint",               default: 0,  null: false
-    t.integer "Glf"
-    t.integer "Gcf"
-    t.integer "Grf"
-  end
-
-  create_table "FieldingPost", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 18, default: "", null: false
-    t.integer "yearID",              default: 0,  null: false
-    t.string  "teamID",   limit: 6
-    t.string  "lgID",     limit: 4
-    t.string  "round",    limit: 20, default: "", null: false
-    t.string  "POS",      limit: 4,  default: "", null: false
-    t.integer "G"
-    t.integer "GS"
-    t.integer "InnOuts"
-    t.integer "PO"
-    t.integer "A"
-    t.integer "E"
-    t.integer "DP"
-    t.integer "TP"
-    t.integer "PB"
-    t.integer "SB"
-    t.integer "CS"
   end
 
   create_table "HallOfFame", id: false, force: :cascade do |t|
@@ -138,39 +84,6 @@ ActiveRecord::Schema.define(version: 20150903184139) do
     t.integer "W"
     t.integer "L"
     t.integer "rank"
-  end
-
-  create_table "PitchingPost", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 18, default: "", null: false
-    t.integer "yearID",              default: 0,  null: false
-    t.string  "round",    limit: 20, default: "", null: false
-    t.string  "teamID",   limit: 6
-    t.string  "lgID",     limit: 4
-    t.integer "W"
-    t.integer "L"
-    t.integer "G"
-    t.integer "GS"
-    t.integer "CG"
-    t.integer "SHO"
-    t.integer "SV"
-    t.integer "IPouts"
-    t.integer "H"
-    t.integer "ER"
-    t.integer "HR"
-    t.integer "BB"
-    t.integer "SO"
-    t.float   "BAOpp"
-    t.float   "ERA"
-    t.integer "IBB"
-    t.integer "WP"
-    t.integer "HBP"
-    t.integer "BK"
-    t.integer "BFP"
-    t.integer "GF"
-    t.integer "R"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
   end
 
   create_table "Salaries", id: false, force: :cascade do |t|
@@ -259,6 +172,31 @@ ActiveRecord::Schema.define(version: 20150903184139) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "battingposts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "yearID",               default: 0,  null: false
+    t.string  "round",     limit: 20, default: "", null: false
+    t.string  "teamID",    limit: 6
+    t.string  "lgID",      limit: 4
+    t.integer "G"
+    t.integer "AB"
+    t.integer "R"
+    t.integer "H"
+    t.integer "2B"
+    t.integer "3B"
+    t.integer "HR"
+    t.integer "RBI"
+    t.integer "SB"
+    t.integer "CS"
+    t.integer "BB"
+    t.integer "SO"
+    t.integer "IBB"
+    t.integer "HBP"
+    t.integer "SH"
+    t.integer "SF"
+    t.integer "GIDP"
+    t.uuid    "player_id"
+  end
+
   create_table "battings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer "yearID",              default: 0, null: false
     t.integer "stint",               default: 0, null: false
@@ -283,6 +221,35 @@ ActiveRecord::Schema.define(version: 20150903184139) do
     t.integer "SF"
     t.integer "GIDP"
     t.integer "G_old"
+    t.uuid    "player_id"
+  end
+
+  create_table "fieldingofs", id: false, force: :cascade do |t|
+    t.string  "playerID", limit: 18, default: "", null: false
+    t.integer "yearID",              default: 0,  null: false
+    t.integer "stint",               default: 0,  null: false
+    t.integer "Glf"
+    t.integer "Gcf"
+    t.integer "Grf"
+  end
+
+  create_table "fieldingposts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "yearID",               default: 0,  null: false
+    t.string  "teamID",    limit: 6
+    t.string  "lgID",      limit: 4
+    t.string  "round",     limit: 20, default: "", null: false
+    t.string  "POS",       limit: 4,  default: "", null: false
+    t.integer "G"
+    t.integer "GS"
+    t.integer "InnOuts"
+    t.integer "PO"
+    t.integer "A"
+    t.integer "E"
+    t.integer "DP"
+    t.integer "TP"
+    t.integer "PB"
+    t.integer "SB"
+    t.integer "CS"
     t.uuid    "player_id"
   end
 
@@ -318,6 +285,39 @@ ActiveRecord::Schema.define(version: 20150903184139) do
     t.integer "L"
     t.integer "rank"
     t.string  "plyrMgr",  limit: 2
+  end
+
+  create_table "pitchingposts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "yearID",               default: 0,  null: false
+    t.string  "round",     limit: 20, default: "", null: false
+    t.string  "teamID",    limit: 6
+    t.string  "lgID",      limit: 4
+    t.integer "W"
+    t.integer "L"
+    t.integer "G"
+    t.integer "GS"
+    t.integer "CG"
+    t.integer "SHO"
+    t.integer "SV"
+    t.integer "IPouts"
+    t.integer "H"
+    t.integer "ER"
+    t.integer "HR"
+    t.integer "BB"
+    t.integer "SO"
+    t.float   "BAOpp"
+    t.float   "ERA"
+    t.integer "IBB"
+    t.integer "WP"
+    t.integer "HBP"
+    t.integer "BK"
+    t.integer "BFP"
+    t.integer "GF"
+    t.integer "R"
+    t.integer "SH"
+    t.integer "SF"
+    t.integer "GIDP"
+    t.uuid    "player_id"
   end
 
   create_table "pitchings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
