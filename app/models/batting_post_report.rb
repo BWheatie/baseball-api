@@ -19,50 +19,50 @@ module BattingPostReport
     bats.reduce(:+)
   end
 
-  def AVG
+  def AVGpost
     bats = @player.battingposts.pluck(:H, :AB)
     bats.map{|b| b[0]}.reduce(:+) / bats.map{|b| b[1]}.reduce(:+).to_f
   end
 
-  def SLG
+  def SLGpost
     bats = @player.battingposts.pluck(:"2B", :"3B", :HR, :AB)
     (single + (bats.map{|b| b[0]}.reduce(:+)*2) + (bats.map{|b| b[1]}.reduce(:+)*3) + (bats.map{|b| b[2]}.reduce(:+)*4)) /
     (bats.map{|b| b[3]}.reduce(:+)).to_f
   end
 
-  def OBP
+  def OBPpost
     bats = @player.battingposts.pluck(:H, :BB, :HBP, :AB, :SF)
     (bats.map{|b| b[0]}.reduce(:+) + bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+)) /
     (bats.map{|b| b[3]}.reduce(:+) + bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+) + bats.map{|b| b[4]}.reduce(:+)).to_f
   end
 
-  def OPS
-    self.SLG + self.OBP
+  def OPSpost
+    self.SLGpost + self.OBPpost
   end
 
-  def ISO
+  def ISOpost
     self.SLG - self.AVG
   end
 
-  def BABIP
+  def BABIPpost
     bats = @player.battingposts.pluck(:H, :HR, :SO, :AB, :SF)
     (bats.map{|b| b[0]}.reduce(:+) - bats.map{|b| b[1]}.reduce(:+)) / (bats.map{|b| b[3]}.reduce(:+) - bats.map{|b| b[2]}.reduce(:+) -
     bats.map{|b| b[1]}.reduce(:+) - bats.map{|b| b[4]}.reduce(:+)).to_f
   end
 
-  def PA
+  def PApost
     bats = @player.battingposts.pluck(:SH, :BB, :HBP, :AB, :SF)
     bats.map{|b| b[0]}.reduce(:+) + bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+) + bats.map{|b| b[3]}.reduce(:+) +
     bats.map{|b| b[4]}.reduce(:+).to_f
   end
 
-  def TB
+  def TBpost
     bats = @player.battingposts.pluck(:"2B", :"3B", :HR, :AB)
     (single + (bats.map{|b| b[0]}.reduce(:+)*2) + (bats.map{|b| b[1]}.reduce(:+)*3) + (bats.map{|b| b[2]}.reduce(:+)*4)).to_f
   end
 
   private
-  def single
+  def singlepost
     bats = @player.battingposts.pluck(:H, :"2B", :"3B", :HR)
     bats.map{|b| b[0]}.reduce(:+) - (bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+) + bats.map{|b| b[3]}.reduce(:+).to_f)
   end
