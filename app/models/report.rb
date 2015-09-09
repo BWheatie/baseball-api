@@ -25,27 +25,27 @@ class Report
   end
 
   def pitcher?
-    has_attrs?(PitchingReport.required_pitching_attrs)
+    has_attrs?(PitchingReport.required_attrs)
   end
 
   def fielder?
-    has_attrs?(FieldingReport.required_fielding_attrs)
+    has_attrs?(FieldingReport.required_attrs)
   end
 
   def post_batter?
-    has_attrs?(required_batting_post_attrs)
+    has_attrs?(BattingPostReport.required_attrs)
   end
 
   def post_pitcher?
-    has_attrs?(required_pitching_post_attrs)
+    has_attrs?(PitchingPostReport.required_attrs)
   end
 
   def post_fielder?
-    has_attrs?(required_fielder_post_attrs)
+    has_attrs?(FieldingPostReport.required_attrs)
   end
 
   def appears?
-    has_attrs?(AppearancesReport.required_appearances_attrs)
+    has_attrs?(AppearancesReport.required_attrs)
   end
 
   private

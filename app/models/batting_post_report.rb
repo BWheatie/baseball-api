@@ -1,13 +1,13 @@
 module BattingPostReport
-  def self.required_batting_post_attrs
+  def self.required_attrs
     [:G, :AB]
   end
 
-  def self.optional_batting_post_attrs
+  def self.optional_attrs
     [:R, :H, :"2B", :"3B", :HR, :RBI, :SB, :CS, :BB, :SO, :IBB, :HBP, :SH, :SF, :GIDP]
   end
 
-  (self.required_batting_post_attrs + self.optional_batting_post_attrs).each do |stat|
+  (self.required_attrs + self.optional_attrs).each do |stat|
     define_method(stat) do
       sum_battingpost_stat(stat)
     end
