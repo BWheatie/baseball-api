@@ -1,4 +1,4 @@
 class BattingSerializer < ActiveModel::Serializer
-  attributes :yearID, :stint, :teamID, :G, :AB, :R, :H, :HR, :RBI, :SB, :SO
+  attributes :G, :AB, :R, :H, :HR, :RBI, :SB, :SO, :AVG, :SLG, :OBP, :OPS, :ISO, :BABIP, :PA
   belongs_to :player
 end
