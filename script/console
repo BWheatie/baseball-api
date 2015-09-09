@@ -12,6 +12,11 @@ cd "$(dirname "$0")/.."
 if [ -n "$1" ]; then
   # use first argument as an environment name. Use this to decide how to connect
   # to the appropriate console.
+  if [ "$1" == "production" ]; then
+    hk run console --app baseball-api
+  else
+    echo "Sorry, I don't know how to connect to the '$1' environment."
+    exit 1
   fi
 else
   # no argument provided, so just run the local console in the development
