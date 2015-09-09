@@ -22,7 +22,7 @@ describe PlayersController do
       player = FactoryGirl.create :player, name_first: "Babe", name_last: "Ruth"
       get players_path(q: "ru")
       expect(response).to have_http_status(:success)
-      expect(json["data"].count).to eq 1
+      expect(json["data"].count).to be >= 1
     end
   end
 
