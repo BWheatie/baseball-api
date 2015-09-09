@@ -1,9 +1,18 @@
-class PitchingReport < Report
-  [:W, :L, :G, :GS, :CG, :SHO, :SV, :IPouts, :H, :ER, :HR, :BB, :SO, :BAOpp, :ERA, :IBB, :WP, :HBP, :BK, :BFP, :GF, :R, :SH, :SF, :GIDP].each do |stat|
+module PitchingReport
+  def self.required_pitching_attrs
+    [:G]
+  end
+
+  def self.optional_pitching_attrs
+    [:W, :L, :GS, :CG, :SHO, :SV, :IPouts, :H, :ER, :HR, :BB, :SO, :BAOpp, :ERA, :IBB, :WP, :HBP, :BK, :BFP, :GF, :R, :SH, :SF, :GIDP]
+  end
+
+  (self.required_pitching_attrs + self.optional_pitching_attrs).each do |stat|
     define_method(stat) do
       sum_pitching_stat(stat)
     end
   end
+
 
   def sum_pitching_stat(pitching)
     @player.pitchings.pluck(pitching).reduce(:+)
