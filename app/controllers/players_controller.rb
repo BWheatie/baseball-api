@@ -12,6 +12,7 @@ class PlayersController < ApplicationController
   end
 
   def report
-    render_json_api Player.find(params[:player_id]).report
+    report = Player.find(params[:player_id]).report
+    render json: report, content_type: "application/vnd.api+json"
   end
 end
