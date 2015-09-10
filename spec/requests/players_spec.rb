@@ -17,10 +17,26 @@ describe PlayersController do
   end
 
   describe 'GET /players/:player_id/report' do
-    it 'succeeds' do
+    it 'succeeds for an empty player' do
       player = FactoryGirl.create :player
-      get player_report_path
+      get player_report_path(player)
       expect(response).to have_http_status(:success)
+      #{"data"=>{"id"=>"928dde86-5b8f-4585-8d05-d4542b98f432", "type"=>"reports", "attributes"=>{"batting"=>nil, "pitching"=>nil, "fielding"=>nil, "battingpost"=>nil, "pitchingpost"=>nil, "fieldingpost"=>nil}
+      expect(json["data"]['id']).to_not be_nil
+    end
+
+    it "supports a batter" do
+      batting = FactoryGirl.create :batting_w_required
+      get player_report_path(batting.player)
+      expect(response).to have_http_status(:success)
+      expect(json["data"]["attributes"]["batting"]).to_not be_nil
+    end
+
+    it "supports a pitcher" do
+      pitching = FactoryGirl.create :pitching_w_required
+      get player_report_path(pitching.player)
+      expect(response).to have_http_status(:success)
+      expect(json["data"]["attributes"]["pitching"]).to_not be_nil
     end
   end
 
