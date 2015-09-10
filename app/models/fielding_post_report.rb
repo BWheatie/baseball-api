@@ -1,6 +1,6 @@
 module FieldingPostReport
   def self.required_attrs
-    [:G, :POS]
+    [:G]
   end
 
   def self.optional_attrs

@@ -16,6 +16,14 @@ describe PlayersController do
     end
   end
 
+  describe 'GET /players/:player_id/report' do
+    it 'succeeds' do
+      player = FactoryGirl.create :player
+      get player_report_path
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET /players?q=:query' do
     it 'searches players' do
       FactoryGirl.create_list :player, 2
