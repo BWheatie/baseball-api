@@ -33,7 +33,7 @@ class Report
   end
 
   def post_batter?
-    has_attrs?(BattingPostReport.required_attrs, :battingposts)
+    has_attrs?(BattingReport.required_attrs, :battingposts)
   end
 
   def post_pitcher?

@@ -9,13 +9,8 @@ module BattingReport
 
   (self.required_attrs + self.optional_attrs).each do |stat|
     define_method(stat) do
-      sum_batting_stat(stat)
+      StatHelper.sum_batting_stat(@player, stat)
     end
-  end
-
-  def sum_batting_stat(batting)
-    bats = @player.battings.pluck(batting)
-    bats.reduce(0, :+)
   end
 
   def AVG

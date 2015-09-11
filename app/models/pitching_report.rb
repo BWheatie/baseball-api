@@ -9,19 +9,8 @@ module PitchingReport
 
   (self.required_attrs + self.optional_attrs).each do |stat|
     define_method(stat) do
-      sum_pitching_stat(stat)
+      StatHelper.sum_pitching_stat(@player, stat)
     end
-  end
-
-  def sum_pitching_stat(pitching)
-    pitch = @player.pitchings.pluck(pitching)
-    pitch.map do |p|
-      if p.kind_of? Array
-        p[0] ? p[0] : 0
-      else
-        p
-      end
-    end.reject{|p| p.nil?}.reduce(0, :+)
   end
 
   def WHIP
@@ -44,10 +33,10 @@ module PitchingReport
   end
 
   def IP
-    sum_pitching_stat(:IPouts) / 3
+    StatHelper.sum_pitching_stat(@player, :IPouts) / 3
   end
 
   def bryce stat
-    9 * sum_pitching_stat(stat) / self.IP
+    9 * StatHelper.sum_pitching_stat(@player, stat) / self.IP
   end
 end

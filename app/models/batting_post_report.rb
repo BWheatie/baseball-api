@@ -1,40 +1,16 @@
 module BattingPostReport
-  def self.required_attrs
-    [:G, :AB]
-  end
-
-  def self.optional_attrs
-    [:R, :H, :"2B", :"3B", :HR, :RBI, :SB, :CS, :BB, :SO, :IBB, :HBP, :SH, :SF, :GIDP]
-  end
-
-  (self.required_attrs + self.optional_attrs).each do |stat|
-    define_method(stat) do
-      sum_battingpost_stat(stat)
-    end
-  end
-
-
-  def sum_battingpost_stat(battingpost)
-    bats = @player.battingposts.pluck(battingpost)
-    bats.reduce(0, :+)
-  end
+  include BattingReport
 
   def AVGpost
-    bats = @player.battingposts.pluck(:H, :AB)
-    bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) / bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+).to_f
+    self.AVG
   end
 
   def SLGpost
-    bats = @player.battingposts.pluck(:"2B", :"3B", :HR, :AB)
-    (single + (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)*2) + (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)*3) +
-    (bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)*4)) / (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+)).to_f
+    self.SLG
   end
 
   def OBPpost
-    bats = @player.battingposts.pluck(:H, :BB, :HBP, :AB, :SF)
-    (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)) /
-    (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
-    bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)).to_f
+    self.OBP
   end
 
   def OPSpost
@@ -42,31 +18,18 @@ module BattingPostReport
   end
 
   def ISOpost
-    self.SLG - self.AVG
+    self.SLGpost - self.AVGpost
   end
 
   def BABIPpost
-    bats = @player.battingposts.pluck(:H, :HR, :SO, :AB, :SF)
-    (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)) / (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) -
-    bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) - bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)).to_f
+    self.BABIP
   end
 
   def PApost
-    bats = @player.battingposts.pluck(:SH, :BB, :HBP, :AB, :SF)
-    bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
-    bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) + bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+).to_f
+    self.PA
   end
 
   def TBpost
-    bats = @player.battingposts.pluck(:"2B", :"3B", :HR, :AB)
-    (single + (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)*2) + (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)*3) +
-    (bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)*4)).to_f
-  end
-
-  private
-  def singlepost
-    bats = @player.battingposts.pluck(:H, :"2B", :"3B", :HR)
-    bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) - (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
-    bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+).to_f)
+    self.TB
   end
 end
