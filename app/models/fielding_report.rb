@@ -4,7 +4,7 @@ module FieldingReport
   end
 
   def self.optional_attrs
-    [:GS, :InnOuts, :PO, :A, :E, :DP, :PB, :WP, :SB, :CS, :ZB]
+    [:GS, :InnOuts, :PO, :A, :E, :DP, :PB, :WP, :SB, :CS, :ZR]
   end
 
   (self.required_attrs + self.optional_attrs).each do |stat|
@@ -14,13 +14,13 @@ module FieldingReport
   end
 
   def sum_fielding_stat(fielding)
-    fields = @player.fieldings.pluck(fielding)
-    fields.reduce(:+)
+    fields = @player.fieldings.pluck(fielding).reject{|f| f.nil?}
+    fields.reduce(0, :+)
   end
 
   def FP
     field = @player.fieldings.pluck(:PO, :A, :E)
-    (field.map{|f| f[0]}.reduce(:+) + field.map{|f| f[1]}.reduce(:+)) / (field.map{|f| f[0]}.reduce(:+) + field.map{|f| f[1]}.reduce(:+) +
-    field.map{|f| f[2]}.reduce(:+)).to_f
+    (field.map{|f| f[0] ? f[0] : 0}.reduce(0, :+) + field.map{|f| f[1] ? f[1] : 0}.reduce(0, :+)) / (field.map{|f| f[0] ? f[0] : 0}.reduce(0, :+) +
+    field.map{|f| f[1] ? f[1] : 0}.reduce(0, :+) + field.map{|f| f[2] ? f[2] : 0}.reduce(0, :+)).to_f
   end
 end

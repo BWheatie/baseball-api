@@ -16,6 +16,6 @@ module AppearancesReport
 
   def sum_games_start(appearances)
     games = @player.appearances.pluck(appearances)
-    games.reduce(:+)
+    games.reduce(0, :+)
   end
 end
