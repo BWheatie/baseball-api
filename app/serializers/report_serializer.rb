@@ -5,5 +5,5 @@ class ReportSerializer < ApplicationSerializer
   optional_attribute :battingpost, :post_batter?, BattingPostSerializer
   optional_attribute :pitchingpost, :post_pitcher?, PitchingPostSerializer
   optional_attribute :fieldingpost, :post_fielder?, FieldingPostSerializer
-  # optional_attribute :appearances, :appears?, AppearancesSerializer
+  optional_attribute :appearances, :appears?, AppearancesSerializer
 end
