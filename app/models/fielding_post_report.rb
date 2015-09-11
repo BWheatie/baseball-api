@@ -4,7 +4,7 @@ module FieldingPostReport
   end
 
   def self.optional_attrs
-    [:GS, :InnOuts, :PO, :A, :E, :DP, :PB, :WP, :SB, :CS]
+    [:GS, :InnOuts, :PO, :A, :E, :DP, :PB, :SB, :CS]
   end
   (self.required_attrs + self.optional_attrs).each do |stat|
     define_method(stat) do

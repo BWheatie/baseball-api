@@ -37,7 +37,7 @@ class Report
   end
 
   def post_pitcher?
-    has_attrs?(PitchingPostReport.required_attrs, :pitchingposts)
+    has_attrs?(PitchingReport.required_attrs, :pitchingposts)
   end
 
   def post_fielder?
