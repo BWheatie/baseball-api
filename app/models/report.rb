@@ -41,7 +41,7 @@ class Report
   end
 
   def post_fielder?
-    has_attrs?(FieldingPostReport.required_attrs, :fieldingposts)
+    has_attrs?(FieldingReport.required_attrs, :fieldingposts)
   end
 
   def appears?
