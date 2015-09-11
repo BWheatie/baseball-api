@@ -15,24 +15,25 @@ module BattingReport
 
   def sum_batting_stat(batting)
     bats = @player.battings.pluck(batting)
-    bats.reduce(:+)
+    bats.reduce(0, :+)
   end
 
   def AVG
     bats = @player.battings.pluck(:H, :AB)
-    bats.map{|b| b[0]}.reduce(:+) / bats.map{|b| b[1]}.reduce(:+).to_f
+    bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) / bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+).to_f
   end
 
   def SLG
     bats = @player.battings.pluck(:"2B", :"3B", :HR, :AB)
-    (single + (bats.map{|b| b[0]}.reduce(:+)*2) + (bats.map{|b| b[1]}.reduce(:+)*3) + (bats.map{|b| b[2]}.reduce(:+)*4)) /
-    (bats.map{|b| b[3]}.reduce(:+)).to_f
+    (single + (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)*2) + (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)*3) +
+    (bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)*4)) / (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+)).to_f
   end
 
   def OBP
     bats = @player.battings.pluck(:H, :BB, :HBP, :AB, :SF)
-    (bats.map{|b| b[0]}.reduce(:+) + bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+)) /
-    (bats.map{|b| b[3]}.reduce(:+) + bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+) + bats.map{|b| b[4]}.reduce(:+)).to_f
+    (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)  /
+    (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
+    bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)).to_f
   end
 
   def OPS
@@ -45,24 +46,26 @@ module BattingReport
 
   def BABIP
     bats = @player.battings.pluck(:H, :HR, :SO, :AB, :SF)
-    (bats.map{|b| b[0]}.reduce(:+) - bats.map{|b| b[1]}.reduce(:+)) / (bats.map{|b| b[3]}.reduce(:+) - bats.map{|b| b[2]}.reduce(:+) -
-    bats.map{|b| b[1]}.reduce(:+) - bats.map{|b| b[4]}.reduce(:+)).to_f
+    (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)) / (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) -
+    bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) - bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)).to_f
   end
 
   def PA
     bats = @player.battings.pluck(:SH, :BB, :HBP, :AB, :SF)
-    bats.map{|b| b[0]}.reduce(:+) + bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+) + bats.map{|b| b[3]}.reduce(:+) +
-    bats.map{|b| b[4]}.reduce(:+).to_f
+    bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
+    bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) + bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+).to_f
   end
 
   def TB
     bats = @player.battings.pluck(:"2B", :"3B", :HR, :AB)
-    (single + (bats.map{|b| b[0]}.reduce(:+)*2) + (bats.map{|b| b[1]}.reduce(:+)*3) + (bats.map{|b| b[2]}.reduce(:+)*4)).to_f
+    (single + (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)*2) + (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)*3) +
+    (bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)*4)).to_f
   end
 
   private
   def single
     bats = @player.battings.pluck(:H, :"2B", :"3B", :HR)
-    bats.map{|b| b[0]}.reduce(:+) - (bats.map{|b| b[1]}.reduce(:+) + bats.map{|b| b[2]}.reduce(:+) + bats.map{|b| b[3]}.reduce(:+).to_f)
+    bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) - (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
+    bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+).to_f)
   end
 end

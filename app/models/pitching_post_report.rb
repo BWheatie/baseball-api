@@ -14,32 +14,33 @@ module PitchingPostReport
   end
 
   def sum_pitchingpost_stat(pitchingpost)
-    @player.pitchingposts.pluck(pitchingpost).reduce(:+)
+    pitch = @player.pitchingposts.pluck(pitchingpost)
+    pitch.reduce(0, :+)
   end
 
   def WHIPpost
     pitch = @player.pitchingposts.pluck(:BB, :H)
-    (pitch.map{|p| p[0]}.reduce(:+) + pitch.map{|p| p[1]}.reduce(:+)).to_f / ip
+    (pitch.map{|p| p[0] ? p[0] : 0}.reduce(0, :+) + pitch.map{|p| p[1] ? p[1] : 0}.reduce(0, :+)).to_f / ip
   end
 
   def SO9post
     pitch = @player.pitchingposts.pluck(:SO)
-    (9 * (pitch.map{|p| p[0]}.reduce(:+)).to_f / ip)
+    (9 * (pitch.map{|p| p[0] ? p[0] : 0}.reduce(0, :+)).to_f / ip)
   end
 
   def H9post
     pitch = @player.pitchingposts.pluck(:H)
-    (9 * (pitch.map{|p| p[0]}.reduce(:+)).to_f / ip)
+    (9 * (pitch.map{|p| p[0] ? p[0] : 0}.reduce(0, :+)).to_f / ip)
   end
 
   def BB9post
     pitch = @player.pitchingposts.pluck(:BB)
-    (9 * (pitch.map{|p| p[0]}.reduce(:+)).to_f / ip)
+    (9 * (pitch.map{|p| p[0] ? p[0] : 0}.reduce(0, :+)).to_f / ip)
   end
 
   private
 
-  def ippost
+  def IPpost
     sum_pitchingpost_stat(:IPouts) / 3
   end
 end
