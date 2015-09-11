@@ -9,13 +9,7 @@ module AppearancesReport
 
   (self.required_attrs + self.optional_attrs).each do |start|
     define_method(start) do
-      sum_games_start(start)
+      StatHelper.sum_appearance_stat(@player, start)
     end
-  end
-
-
-  def sum_games_start(appearances)
-    games = @player.appearances.pluck(appearances)
-    games.reduce(0, :+)
   end
 end

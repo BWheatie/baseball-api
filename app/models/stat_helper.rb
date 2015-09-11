@@ -14,6 +14,11 @@ class StatHelper
     map_reject_reduce(field)
   end
 
+  def self.sum_appearance_stat(player, stat)
+    appears = player.appearances.pluck(stat)
+    map_reject_reduce(appears)
+  end
+
   private
 
   def self.map_reject_reduce arr
