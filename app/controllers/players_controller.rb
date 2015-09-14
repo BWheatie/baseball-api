@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
 
   def index
     if params[:q]
-      render_json_api Player.search(params[:q])
+      render_json_api Player.search(params[:q]).page(params[:page])
     else
       render_json_api Player.page(params[:page])
     end
