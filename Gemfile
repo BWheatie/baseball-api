@@ -4,6 +4,7 @@ ruby '2.2.2'
 gem 'rails-api'
 
 gem 'active_model_serializers', '0.10.0.rc2'
+gem 'airbrake'
 gem 'coffee-rails'
 gem 'faker'
 gem 'figaro'
