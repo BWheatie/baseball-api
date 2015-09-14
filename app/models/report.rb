@@ -33,15 +33,15 @@ class Report
   end
 
   def post_batter?
-    has_attrs?(BattingReport.required_attrs, :battingposts)
+    has_attrs?(BattingPostReport.required_attrs, :battingposts)
   end
 
   def post_pitcher?
-    has_attrs?(PitchingReport.required_attrs, :pitchingposts)
+    has_attrs?(PitchingPostReport.required_attrs, :pitchingposts)
   end
 
   def post_fielder?
-    has_attrs?(FieldingReport.required_attrs, :fieldingposts)
+    has_attrs?(FieldingPostReport.required_attrs, :fieldingposts)
   end
 
   def appears?

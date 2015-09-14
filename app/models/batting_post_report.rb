@@ -1,35 +1,51 @@
 module BattingPostReport
   include BattingReport
 
-  def AVGpost
-    self.AVG
+  def self.required_attrs
+    [:battingpost_games, :battingpost_atbats]
   end
 
-  def SLGpost
-    self.SLG
+  def self.optional_attrs
+    [:battingpost_runs, :battingpost_hits, :battingpost_doubles, :battingpost_triples, :battingpost_homeruns, :battingpost_rbi,
+    :battingpost_stolenbases, :battingpost_caughtstealing, :battingpost_walks, :battingpost_strikeouts, :battingpost_intentionalwalks,
+    :battingpost_hitbypitch, :battingpost_sacbunts, :battingpost_sacflys, :battingpost_gidp]
   end
 
-  def OBPpost
-    self.OBP
+  (self.required_attrs + self.optional_attrs).each do |stat|
+    define_method(stat) do
+      StatHelper.sum_battingpost_stat(@player, stat)
+    end
   end
 
-  def OPSpost
-    self.SLGpost + self.OBPpost
+  def avgpost
+    self.avg
   end
 
-  def ISOpost
-    self.SLGpost - self.AVGpost
+  def slgpost
+    self.slg
   end
 
-  def BABIPpost
-    self.BABIP
+  def obppost
+    self.obp
   end
 
-  def PApost
-    self.PA
+  def opspost
+    self.slgpost + self.obppost
   end
 
-  def TBpost
-    self.TB
+  def isopost
+    self.slgpost - self.avgpost
+  end
+
+  def babippost
+    self.babip
+  end
+
+  def papost
+    self.pa
+  end
+
+  def tbpost
+    self.tb
   end
 end

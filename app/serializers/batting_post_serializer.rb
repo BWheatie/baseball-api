@@ -1,4 +1,6 @@
 class BattingPostSerializer < ActiveModel::Serializer
-  attributes :G, :AB, :R, :H, :"2B", :"3B", :HR, :RBI, :SB, :CS, :BB, :SO, :IBB, :HBP, :SH, :SF, :GIDP
-  attributes :AVGpost, :SLGpost, :OBPpost, :OPSpost, :ISOpost, :BABIPpost, :PApost
+  attributes :battingpost_runs, :battingpost_hits, :battingpost_doubles, :battingpost_triples, :battingpost_homeruns, :battingpost_rbi
+  attributes :battingpost_stolenbases, :battingpost_caughtstealing, :battingpost_walks, :battingpost_strikeouts
+  attributes :battingpost_intentionalwalks, :battingpost_hitbypitch, :battingpost_sacbunts, :battingpost_sacflys, :battingpost_gidp
+  attributes :avgpost, :slgpost, :obppost, :opspost, :isopost, :babippost, :papost
 end

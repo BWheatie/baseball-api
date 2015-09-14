@@ -21,7 +21,6 @@ describe PlayersController do
       player = FactoryGirl.create :player
       get player_report_path(player)
       expect(response).to have_http_status(:success)
-      #{"data"=>{"id"=>"928dde86-5b8f-4585-8d05-d4542b98f432", "type"=>"reports", "attributes"=>{"batting"=>nil, "pitching"=>nil, "fielding"=>nil, "battingpost"=>nil, "pitchingpost"=>nil, "fieldingpost"=>nil}
       expect(json["data"]['id']).to_not be_nil
     end
 
@@ -37,6 +36,15 @@ describe PlayersController do
       get player_report_path(pitching.player)
       expect(response).to have_http_status(:success)
       expect(json["data"]["attributes"]["pitching"]).to_not be_nil
+    end
+
+    it "correctly calcs HR" do
+      player = FactoryGirl.create :player
+      FactoryGirl.create :batting_w_required, player: player, batting_homeruns: 3
+      FactoryGirl.create :batting_w_required, player: player, batting_homeruns: 2
+      get player_report_path(player)
+      expect(response).to have_http_status(:success)
+      expect(json["data"]["attributes"]["batting"]["batting_homeruns"]).to eq 5
     end
   end
 

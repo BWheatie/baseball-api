@@ -3,7 +3,7 @@ FactoryGirl.define do
     player
 
     factory :pitching_w_required do
-      G { 1 }
+      pitching_games { 1 }
     end
   end
 end

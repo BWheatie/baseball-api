@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908164732) do
+ActiveRecord::Schema.define(version: 20150914221524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,53 +173,53 @@ ActiveRecord::Schema.define(version: 20150908164732) do
   end
 
   create_table "battingposts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "yearID",               default: 0,  null: false
-    t.string  "round",     limit: 20, default: "", null: false
-    t.string  "teamID",    limit: 6
-    t.string  "lgID",      limit: 4
-    t.integer "G"
-    t.integer "AB"
-    t.integer "R"
-    t.integer "H"
-    t.integer "2B"
-    t.integer "3B"
-    t.integer "HR"
-    t.integer "RBI"
-    t.integer "SB"
-    t.integer "CS"
-    t.integer "BB"
-    t.integer "SO"
-    t.integer "IBB"
-    t.integer "HBP"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
+    t.integer "yearID",                                  default: 0,  null: false
+    t.string  "round",                        limit: 20, default: "", null: false
+    t.string  "teamID",                       limit: 6
+    t.string  "lgID",                         limit: 4
+    t.integer "battingpost_games"
+    t.integer "battingpost_atbats"
+    t.integer "battingpost_runs"
+    t.integer "battingpost_hits"
+    t.integer "battingpost_doubles"
+    t.integer "battingpost_triples"
+    t.integer "battingpost_homeruns"
+    t.integer "battingpost_rbi"
+    t.integer "battingpost_stolenbases"
+    t.integer "battingpost_caughtstealing"
+    t.integer "battingpost_walks"
+    t.integer "battingpost_strikeouts"
+    t.integer "battingpost_intentionalwalks"
+    t.integer "battingpost_hitbypitch"
+    t.integer "battingpost_sacbunts"
+    t.integer "battingpost_sacflys"
+    t.integer "battingpost_gidp"
     t.uuid    "player_id"
   end
 
   create_table "battings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "yearID",              default: 0, null: false
-    t.integer "stint",               default: 0, null: false
-    t.string  "teamID",    limit: 6
-    t.string  "lgID",      limit: 4
-    t.integer "G"
+    t.integer "yearID",                             default: 0, null: false
+    t.integer "stint",                              default: 0, null: false
+    t.string  "teamID",                   limit: 6
+    t.string  "lgID",                     limit: 4
+    t.integer "games"
     t.integer "G_batting"
-    t.integer "AB"
-    t.integer "R"
-    t.integer "H"
-    t.integer "2B"
-    t.integer "3B"
-    t.integer "HR"
-    t.integer "RBI"
-    t.integer "SB"
-    t.integer "CS"
-    t.integer "BB"
-    t.integer "SO"
-    t.integer "IBB"
-    t.integer "HBP"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
+    t.integer "atbats"
+    t.integer "batting_runs"
+    t.integer "batting_hits"
+    t.integer "batting_doubles"
+    t.integer "batting_triples"
+    t.integer "batting_homeruns"
+    t.integer "batting_rbi"
+    t.integer "batting_stolenbases"
+    t.integer "batting_caughtstealing"
+    t.integer "batting_walk"
+    t.integer "batting_strikeout"
+    t.integer "batting_intentionalwalks"
+    t.integer "batting_hitbypitch"
+    t.integer "batting_sacbunt"
+    t.integer "batting_sacfly"
+    t.integer "batting_gidp"
     t.integer "G_old"
     t.uuid    "player_id"
   end
@@ -234,43 +234,43 @@ ActiveRecord::Schema.define(version: 20150908164732) do
   end
 
   create_table "fieldingposts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "yearID",               default: 0,  null: false
-    t.string  "teamID",    limit: 6
-    t.string  "lgID",      limit: 4
-    t.string  "round",     limit: 20, default: "", null: false
-    t.string  "POS",       limit: 4,  default: "", null: false
-    t.integer "G"
-    t.integer "GS"
-    t.integer "InnOuts"
-    t.integer "PO"
-    t.integer "A"
-    t.integer "E"
-    t.integer "DP"
-    t.integer "TP"
-    t.integer "PB"
-    t.integer "SB"
-    t.integer "CS"
+    t.integer "yearID",                                 default: 0,  null: false
+    t.string  "teamID",                      limit: 6
+    t.string  "lgID",                        limit: 4
+    t.string  "round",                       limit: 20, default: "", null: false
+    t.string  "POS",                         limit: 4,  default: "", null: false
+    t.integer "fieldingpost_games"
+    t.integer "fieldingpost_gamesstarted"
+    t.integer "fieldingpost_innouts"
+    t.integer "fieldingpost_putouts"
+    t.integer "fieldingpost_assists"
+    t.integer "fieldingpost_errors"
+    t.integer "fieldingpost_doubleplay"
+    t.integer "fieldingpost_tripleplay"
+    t.integer "fieldingpost_passedballs"
+    t.integer "fieldingpost_stolenbases"
+    t.integer "fieldingpost_caughtstealing"
     t.uuid    "player_id"
   end
 
   create_table "fieldings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "yearID",              default: 0,  null: false
-    t.integer "stint",               default: 0,  null: false
-    t.string  "teamID",    limit: 6
-    t.string  "lgID",      limit: 4
-    t.string  "POS",       limit: 4, default: "", null: false
-    t.integer "G"
-    t.integer "GS"
-    t.integer "InnOuts"
-    t.integer "PO"
-    t.integer "A"
-    t.integer "E"
-    t.integer "DP"
-    t.integer "PB"
-    t.integer "WP"
-    t.integer "SB"
-    t.integer "CS"
-    t.float   "ZR"
+    t.integer "yearID",                            default: 0,  null: false
+    t.integer "stint",                             default: 0,  null: false
+    t.string  "teamID",                  limit: 6
+    t.string  "lgID",                    limit: 4
+    t.string  "POS",                     limit: 4, default: "", null: false
+    t.integer "fielding_games"
+    t.integer "fielding_gamesstarted"
+    t.integer "fielding_innouts"
+    t.integer "fielding_putouts"
+    t.integer "fielding_assists"
+    t.integer "fielding_errors"
+    t.integer "fielding_doubleplay"
+    t.integer "fielding_passedballs"
+    t.integer "fielding_wildpitches"
+    t.integer "fielding_stolenbases"
+    t.integer "fielding_caughtstealing"
+    t.float   "fielding_zonerating"
     t.uuid    "player_id"
   end
 
@@ -288,68 +288,68 @@ ActiveRecord::Schema.define(version: 20150908164732) do
   end
 
   create_table "pitchingposts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "yearID",               default: 0,  null: false
-    t.string  "round",     limit: 20, default: "", null: false
-    t.string  "teamID",    limit: 6
-    t.string  "lgID",      limit: 4
-    t.integer "W"
-    t.integer "L"
-    t.integer "G"
-    t.integer "GS"
-    t.integer "CG"
-    t.integer "SHO"
-    t.integer "SV"
-    t.integer "IPouts"
-    t.integer "H"
-    t.integer "ER"
-    t.integer "HR"
-    t.integer "BB"
-    t.integer "SO"
-    t.float   "BAOpp"
-    t.float   "ERA"
-    t.integer "IBB"
-    t.integer "WP"
-    t.integer "HBP"
-    t.integer "BK"
-    t.integer "BFP"
-    t.integer "GF"
-    t.integer "R"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
+    t.integer "yearID",                                   default: 0,  null: false
+    t.string  "round",                         limit: 20, default: "", null: false
+    t.string  "teamID",                        limit: 6
+    t.string  "lgID",                          limit: 4
+    t.integer "pitchingpost_wins"
+    t.integer "pitchingpost_losses"
+    t.integer "pitchingpost_games"
+    t.integer "pitchingpost_gamesstarted"
+    t.integer "pitchingpost_completegames"
+    t.integer "pitchingpost_shutouts"
+    t.integer "pitchingpost_saves"
+    t.integer "pitchingpost_ipouts"
+    t.integer "pitchingpost_hits"
+    t.integer "pitchingpost_earnedruns"
+    t.integer "pitchingpost_homeruns"
+    t.integer "pitchingpost_walks"
+    t.integer "pitchingpost_strikeouts"
+    t.float   "pitchingpost_baopp"
+    t.float   "pitchingpost_era"
+    t.integer "pitchingpost_intentionalwalks"
+    t.integer "pitchingpost_wildpitches"
+    t.integer "pitchingpost_hitbypitch"
+    t.integer "pitchingpost_balk"
+    t.integer "pitchingpost_battersfaced"
+    t.integer "pitchingpost_gamesfinished"
+    t.integer "pitchingpost_runs"
+    t.integer "pitchingpost_sacbunts"
+    t.integer "pitchingpost_sacflys"
+    t.integer "pitchingpost_gidp"
     t.uuid    "player_id"
   end
 
   create_table "pitchings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "yearID",              default: 0, null: false
-    t.integer "stint",               default: 0, null: false
-    t.string  "teamID",    limit: 6
-    t.string  "lgID",      limit: 4
-    t.integer "W"
-    t.integer "L"
-    t.integer "G"
-    t.integer "GS"
-    t.integer "CG"
-    t.integer "SHO"
-    t.integer "SV"
-    t.integer "IPouts"
-    t.integer "H"
-    t.integer "ER"
-    t.integer "HR"
-    t.integer "BB"
-    t.integer "SO"
-    t.float   "BAOpp"
-    t.float   "ERA"
-    t.integer "IBB"
-    t.integer "WP"
-    t.integer "HBP"
-    t.integer "BK"
-    t.integer "BFP"
-    t.integer "GF"
-    t.integer "R"
-    t.integer "SH"
-    t.integer "SF"
-    t.integer "GIDP"
+    t.integer "yearID",                              default: 0, null: false
+    t.integer "stint",                               default: 0, null: false
+    t.string  "teamID",                    limit: 6
+    t.string  "lgID",                      limit: 4
+    t.integer "pitching_wins"
+    t.integer "pitching_losses"
+    t.integer "pitching_games"
+    t.integer "pitching_gamesstarted"
+    t.integer "pitching_completegames"
+    t.integer "pitching_shutouts"
+    t.integer "pitching_saves"
+    t.integer "pitching_ipouts"
+    t.integer "pitching_hits"
+    t.integer "pitching_earnedruns"
+    t.integer "pitching_homeruns"
+    t.integer "pitching_walks"
+    t.integer "pitching_strikeouts"
+    t.float   "pitching_baopp"
+    t.float   "pitching_era"
+    t.integer "pitching_intentionalwalks"
+    t.integer "pitching_wildpitches"
+    t.integer "pitching_hitbypitch"
+    t.integer "pitching_balk"
+    t.integer "pitching_battersfaced"
+    t.integer "pitching_gamesfinished"
+    t.integer "pitching_runs"
+    t.integer "pitching_sacbunts"
+    t.integer "pitching_sacflys"
+    t.integer "pitching_gidp"
     t.uuid    "player_id"
   end
 

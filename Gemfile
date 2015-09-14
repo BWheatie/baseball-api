@@ -32,6 +32,7 @@ group :development, :test do
   gem 'byebug'
   gem 'foreman'
   gem 'pry'
+  gem 'pry-stack_explorer'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end

@@ -1,3 +1,5 @@
 class FieldingSerializer < ActiveModel::Serializer
-  attributes :G, :GS, :InnOuts, :PO, :A, :E, :DP, :PB, :WP, :SB, :CS, :ZR, :FP
+  attributes :fielding_games, :fielding_gamesstarted, :fielding_innouts, :fielding_putouts, :fielding_assists, :fielding_errors
+  attributes :fielding_doubleplay, :fielding_passedballs, :fielding_wildpitches, :fielding_stolenbases
+  attributes :fielding_caughtstealing, :fielding_zonerating
 end

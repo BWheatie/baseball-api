@@ -4,14 +4,29 @@ class StatHelper
     map_reject_reduce(pitch)
   end
 
+  def self.sum_pitchingpost_stat(player, stat)
+    postpitch = player.pitchingposts.pluck(stat)
+    map_reject_reduce(postpitch)
+  end
+
   def self.sum_batting_stat(player, stat)
     bats = player.battings.pluck(stat)
     map_reject_reduce(bats)
   end
 
+  def self.sum_battingpost_stat(player, stat)
+    postbats = player.battingposts.pluck(stat)
+    map_reject_reduce(postbats)
+  end
+
   def self.sum_fielding_stat(player, stat)
     field = player.fieldings.pluck(stat)
     map_reject_reduce(field)
+  end
+
+  def self.sum_fieldingpost_stat(player, stat)
+    postfield = player.fieldingposts.pluck(stat)
+    map_reject_reduce(postfield)
   end
 
   def self.sum_appearance_stat(player, stat)

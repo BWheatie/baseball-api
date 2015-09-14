@@ -1,10 +1,12 @@
 module BattingReport
   def self.required_attrs
-    [:G, :AB]
+    [:games, :atbats]
   end
 
   def self.optional_attrs
-    [:R, :H, :"2B", :"3B", :HR, :RBI, :SB, :CS, :BB, :SO, :IBB, :HBP, :SH, :SF, :GIDP]
+    [:batting_runs, :batting_hits, :batting_doubles, :batting_triples, :batting_homeruns, :batting_rbi, :batting_stolenbases,
+    :batting_caughtstealing, :batting_walk, :batting_strikeout, :batting_intentionalwalks, :batting_hitbypitch, :batting_sacbunt,
+    :batting_sacfly, :batting_gidp]
   end
 
   (self.required_attrs + self.optional_attrs).each do |stat|
@@ -13,53 +15,53 @@ module BattingReport
     end
   end
 
-  def AVG
-    bats = @player.battings.pluck(:H, :AB)
+  def avg
+    bats = @player.battings.pluck(:batting_hits, :atbats)
     bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) / bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+).to_f
   end
 
-  def SLG
-    bats = @player.battings.pluck(:"2B", :"3B", :HR, :AB)
+  def slg
+    bats = @player.battings.pluck(:batting_doubles, :batting_triples, :batting_homeruns, :atbats)
     (single + (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)*2) + (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)*3) +
     (bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)*4)) / (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+)).to_f
   end
 
-  def OBP
-    bats = @player.battings.pluck(:H, :BB, :HBP, :AB, :SF)
+  def obp
+    bats = @player.battings.pluck(:batting_hits, :batting_walk, :batting_hitbypitch, :atbats, :batting_sacfly)
     (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)  /
     (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
     bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)).to_f
   end
 
-  def OPS
-    self.SLG + self.OBP
+  def ops
+    self.slg + self.obp
   end
 
-  def ISO
-    self.SLG - self.AVG
+  def iso
+    self.slg - self.avg
   end
 
-  def BABIP
-    bats = @player.battings.pluck(:H, :HR, :SO, :AB, :SF)
+  def babip
+    bats = @player.battings.pluck(:batting_hits, :batting_homeruns, :batting_strikeout, :atbats, :batting_sacbunt)
     (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)) / (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) -
     bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) - bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)).to_f
   end
 
-  def PA
-    bats = @player.battings.pluck(:SH, :BB, :HBP, :AB, :SF)
+  def pa
+    bats = @player.battings.pluck(:batting_sacbunt, :batting_walk, :batting_hitbypitch, :atbats, :batting_sacfly)
     bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) + bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
     bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) + bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+).to_f
   end
 
-  def TB
-    bats = @player.battings.pluck(:"2B", :"3B", :HR, :AB)
+  def tb
+    bats = @player.battings.pluck(:batting_doubles, :batting_triples, :batting_homeruns, :atbats)
     (single + (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)*2) + (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)*3) +
     (bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)*4)).to_f
   end
 
   private
   def single
-    bats = @player.battings.pluck(:H, :"2B", :"3B", :HR)
+    bats = @player.battings.pluck(:batting_hits, :batting_doubles, :batting_triples, :batting_homeruns)
     bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) - (bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) + bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) +
     bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+).to_f)
   end
