@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   def show
-    render_json_api Player.find(params[:id])
+    render_json_api Player.find(params[:id].split(','))
   end
 
   def index

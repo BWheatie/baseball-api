@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 RSpec.describe BattingReport, type: :model do
   describe "#sum_batting_stat" do
