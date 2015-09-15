@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://baseball-api.herokuapp.com/
+HOST: http://api.betterthanmostsports.com/
 
 # Baseball-API
 
@@ -13,28 +13,28 @@ This API uses an open source database from Sean Lehman to render all historical 
 
 + Response 200 (application/json)
 
-    [
+
         {
             id: "541fd425-c4ab-4618-9521-4b3e1362b610",
             type: "players",
             attributes: {
-                "nameFirst": "David",
-                "nameLast": "Aardsma",
-                "nameGiven": "David Allan",
-                "birthDay": 27,
-                "birthMonth": 12,
-                "birthYear": 1981,
-                "birthState": "CO",
-                "birthCity": "Denver",
+                "name_first": "David",
+                "name_last": "Aardsma",
+                "name_given": "David Allan",
+                "birth_day": 27,
+                "birth_month": 12,
+                "birth_year": 1981,
+                "birth_state": "CO",
+                "birth_city": "Denver",
                 "weight": 205,
                 "height": 75,
                 "bats": "R",
                 "throws": "R",
                 "debut": "2004-04-06T05:00:00.000Z"
                 }
-            ]
+                
         }
-    ]
+
 
 ## Player [/players/{id}]
 
@@ -45,93 +45,31 @@ This API uses an open source database from Sean Lehman to render all historical 
 
 + Response 200 (application/json)
 
-    [
         {
-            "id":"541fd425-c4ab-4618-9521 4b3e1362b610",
-            "type":"players",
-            "attributes":{
-                "nameFirst":"David",
-                "nameLast":"Aardsma",
-                "nameGiven":"David Allan",
-                "birthDay":27,
-                "birthMonth":12,
-                "birthYear":1981,
-                "birthState":"CO",
-                "birthCity":"Denver",
-                "weight":205,
-                "height":75.0,
-                "bats":"R",
-                "throws":"R",
-                "debut":"2004-04-06T05:00:00.000Z"
-                },
-                "relationships":
+            "data": 
+            [
+    
                 {
-                    "battings":{"data":
-                    [
-                        {"type":"battings",
-                            "id":"43b7b5ea-e464-48f2-a9f4-3f529a6d27e4"},
-                        {"type":"battings",
-                            "id":"5f8342d6-adb6-49ca-ba33-210762e52c76"},
-                        {"type":"battings",
-                            "id":"6b5ce415-4988-4861-a933-15b2ee6c068b"},
-                        {"type":"battings",
-                            "id":"9150a857-a8e5-4306-a33a-a9adfc2d5428"},
-                        {"type":"battings",
-                            "id":"99dd34d4-9061-409a-a502-16182da20d49"},
-                        {"type":"battings",
-                            "id":"e50e1dfa-68f4-4770-bb71-7b5e99ee1487"},
-                        {"type":"battings",
-                            "id":"e8277c34-1553-405b-a245-f1c4edacffbb"},
-                        {"type":"battings",
-                            "id":"fa4a2a41-8b49-4c94-b969-71dbbf6af56e"}
-                    ]
-                },
-                    "fieldings":{"data":
-                    [
-                        {"type":"fieldings",
-                            "id":"36877d17-1ce9-462e-9571-8fcfd441fc6a"},
-                        {"type":"fieldings",
-                            "id":"437794a2-3320-4a2b-847a-c1c53930253c"},
-                        {"type":"fieldings",
-                            "id":"78008097-15b0-449b-bbd9-8e91200f1d96"},
-                        {"type":"fieldings",
-                            "id":"a4e656a8-ffd6-491f-af58-50058762d04d"},
-                        {"type":"fieldings",
-                            "id":"b6fe1823-2fc8-4f2c-a43a-e66c680eef5a"},
-                        {"type":"fieldings",
-                            "id":"c40cb906-496a-4f90-b395-9c0e3fc47c89"},
-                        {"type":"fieldings",
-                            "id":"dafd4828-382f-4799-8b13-857fb1282515"},
-                        {"type":"fieldings",
-                            "id":"e07e0c47-309b-43dd-8b5e-d787f1da8e2d"}
-                    ]
-                },
-                    "pitchings":{"data":
-                    [
-                        {"type":"pitchings",
-                            "id":"5701e9a9-5ec0-4c42-b7d6-a84f9e096ef0"},
-                        {"type":"pitchings",
-                            "id":"581fbb06-f32f-49d5-9161-903bd41fe58c"},
-                        {"type":"pitchings",
-                            "id":"9572f1d8-91c3-486f-bd6e-abe7adee3d27"},
-                        {"type":"pitchings",
-                            "id":"9835f7b9-996f-4975-a526-f74b4ff29fc9"},
-                        {"type":"pitchings",
-                            "id":"9c526d9e-330b-4156-9470-5e5cc59390e8"},
-                        {"type":"pitchings",
-                            "id":"a8ec4d73-c195-4958-9ef3-cec6394a3374"},
-                        {"type":"pitchings",
-                            "id":"b23fb5e7-cb82-4edc-9fa6-5b481aa66363"},
-                        {"type":"pitchings",
-                            "id":"c7166e03-b258-432c-9b09-8900429bad46"}
-                    ]
-                },
-                    "report":{"data":
-                        {"type":"reports",
-                            "id":"e0ef1bd3-3af8-4ac7-9e8c-b16b4506afb5"}
-            }
+                  "id": "541fd425-c4ab-4618-9521-4b3e1362b610",
+                  "type": "players",
+                  "attributes": {
+                    "name_first": "David",
+                    "name_last": "Aardsma",
+                    "name_given": "David Allan",
+                    "birth_day": 27,
+                    "birth_month": 12,
+                    "birth_year": 1981,
+                    "birth_state": "CO",
+                    "birth_city": "Denver",
+                    "weight": 205,
+                    "height": 75.0,
+                    "bats": "R",
+                    "throws": "R",
+                    "debut": "2004-04-06T05:00:00.000Z"
+                    }
+                }
+            ]
         }
-    }
 
 ## Player Reports [/players/{id}/report]
 
@@ -145,13 +83,394 @@ This report will generate basic batting, fielding, and pitching stats for any pl
 + Response 200 (application/json)
 
         {
-            id: "8195d33b-926d-46ca-ba9e-62eaa1854444",
-            type: "reports",
-            attributes: {
-                "BA": 0,
-                "H": 271,
-                "RBI": 0,
-                "HR": 35,
-                "batting_score": -939.2
-            }
+            "data": 
+            [
+    
+                {
+                  "id": "721fb791-30b6-4767-a8f7-09df037fcdae",
+                  "type": "reports",
+                  "attributes": 
+                  {
+                    "batting": 
+                    {
+                      "games": 298,
+                      "atbats": 3,
+                      "batting_runs": 0,
+                      "batting_hits": 0,
+                      "batting_doubles": 0,
+                      "batting_triples": 0,
+                      "batting_homeruns": 0,
+                      "batting_rbi": 0,
+                      "batting_stolenbases": 0,
+                      "batting_caughtstealing": 0,
+                      "batting_walk": 0,
+                      "batting_strikeout": 1,
+                      "batting_intentionalwalks": 0,
+                      "batting_hitbypitch": 0,
+                      "batting_sacbunt": 1,
+                      "batting_sacfly": 0,
+                      "batting_gidp": 0,
+                      "avg": 0.0,
+                      "slg": 0.0,
+                      "obp": 0.0,
+                      "ops": 0.0,
+                      "iso": 0.0,
+                      "babip": 0.0,
+                      "pa": 4.0,
+                      "tb": 0.0
+                    },
+                    "pitching": 
+                    {
+                      "pitching_games": 298,
+                      "pitching_wins": 15,
+                      "pitching_losses": 17,
+                      "pitching_gamesstarted": 0,
+                      "pitching_completegames": 0,
+                      "pitching_shutouts": 0,
+                      "pitching_saves": 69,
+                      "pitching_ipouts": 919,
+                      "pitching_hits": 271,
+                      "pitching_earnedruns": 144,
+                      "pitching_homeruns": 35,
+                      "pitching_walks": 169,
+                      "pitching_strikeouts": 305,
+                      "pitching_baopp": 2.093,
+                      "pitching_era": 42.050000000000004,
+                      "pitching_intentionalwalks": 19,
+                      "pitching_wildpitches": 11,
+                      "pitching_hitbypitch": 15,
+                      "pitching_balk": 1,
+                      "pitching_battersfaced": 1346,
+                      "pitching_gamesfinished": 132,
+                      "pitching_runs": 152,
+                      "pitching_sacbunts": 17,
+                      "pitching_sacflys": 10,
+                      "pitching_gidp": 0
+                    },
+                    "fielding": 
+                    {
+                      "fielding_games": 298,
+                      "fielding_gamesstarted": 0,
+                      "fielding_innouts": 921,
+                      "fielding_putouts": 11,
+                      "fielding_assists": 28,
+                      "fielding_errors": 2,
+                      "fielding_doubleplay": 2,
+                      "fielding_passedballs": 0,
+                      "fielding_wildpitches": 0,
+                      "fielding_stolenbases": 0,
+                      "fielding_caughtstealing": 0,
+                      "fielding_zonerating": 0
+                    },
+                    "battingpost": null,
+                    "pitchingpost": null,
+                    "fieldingpost": null,
+                    "appearances": 
+                    {
+                      "G_all": 298,
+                      "GS": 0,
+                      "G_batting": 109,
+                      "G_defense": 298,
+                      "G_p": 298,
+                      "G_c": 0,
+                      "G_1b": 0,
+                      "G_2b": 0,
+                      "G_3b": 0,
+                      "G_ss": 0,
+                      "G_lf": 0,
+                      "G_cf": 0,
+                      "G_rf": 0,
+                      "G_of": 0,
+                      "G_dh": 0,
+                      "G_ph": 0,
+                      "G_pr": 0
+                        }
+                    }
+                }
+            ]
+        }
+        
+## Player Comparison [/players/{id,id}]
+This allows a user to compare multiple players in a single view. IDs need to be separated by a comma in the url.
+
++ Parameters
+    + id (string) ... UUID of player
+
+### Player [GET]
+
++ Response 200 (application/json)
+
+        {
+            "data": 
+            [
+    
+                {
+                  "id": "541fd425-c4ab-4618-9521-4b3e1362b610",
+                  "type": "players",
+                  "attributes": {
+                    "name_first": "David",
+                    "name_last": "Aardsma",
+                    "name_given": "David Allan",
+                    "birth_day": 27,
+                    "birth_month": 12,
+                    "birth_year": 1981,
+                    "birth_state": "CO",
+                    "birth_city": "Denver",
+                    "weight": 205,
+                    "height": 75.0,
+                    "bats": "R",
+                    "throws": "R",
+                    "debut": "2004-04-06T05:00:00.000Z"
+                    }
+                },
+                
+                {
+                  "id": "0ebc2767-af3e-43bc-907e-756bfc3e8b53",
+                  "type": "players",
+                  "attributes": 
+                  {
+                    "name_first": "Hank",
+                    "name_last": "Aaron",
+                    "name_given": "Henry Louis",
+                    "birth_day": 5,
+                    "birth_month": 2,
+                    "birth_year": 1934,
+                    "birth_state": "AL",
+                    "birth_city": "Mobile",
+                    "weight": 180,
+                    "height": 72.0,
+                    "bats": "R",
+                    "throws": "R",
+                    "debut": "1954-04-13T06:00:00.000Z"
+                  }
+            ]
+        }
+
+## Player Report Comparison [/players/{id,id}/report]
+
++ Parameters
+    + id (string) ... UUID of player
+
+### Career Report [GET]
+
+This report is identical to the single player report simply including another player for side-by-side comparison.
+
++ Response 200 (application/json)
+
+        {
+            "data": 
+            [
+    
+                {
+                  "id": "721fb791-30b6-4767-a8f7-09df037fcdae",
+                  "type": "reports",
+                  "attributes": 
+                  {
+                    "batting": 
+                    {
+                      "games": 298,
+                      "atbats": 3,
+                      "batting_runs": 0,
+                      "batting_hits": 0,
+                      "batting_doubles": 0,
+                      "batting_triples": 0,
+                      "batting_homeruns": 0,
+                      "batting_rbi": 0,
+                      "batting_stolenbases": 0,
+                      "batting_caughtstealing": 0,
+                      "batting_walk": 0,
+                      "batting_strikeout": 1,
+                      "batting_intentionalwalks": 0,
+                      "batting_hitbypitch": 0,
+                      "batting_sacbunt": 1,
+                      "batting_sacfly": 0,
+                      "batting_gidp": 0,
+                      "avg": 0.0,
+                      "slg": 0.0,
+                      "obp": 0.0,
+                      "ops": 0.0,
+                      "iso": 0.0,
+                      "babip": 0.0,
+                      "pa": 4.0,
+                      "tb": 0.0
+                    },
+                    "pitching": 
+                    {
+                      "pitching_games": 298,
+                      "pitching_wins": 15,
+                      "pitching_losses": 17,
+                      "pitching_gamesstarted": 0,
+                      "pitching_completegames": 0,
+                      "pitching_shutouts": 0,
+                      "pitching_saves": 69,
+                      "pitching_ipouts": 919,
+                      "pitching_hits": 271,
+                      "pitching_earnedruns": 144,
+                      "pitching_homeruns": 35,
+                      "pitching_walks": 169,
+                      "pitching_strikeouts": 305,
+                      "pitching_baopp": 2.093,
+                      "pitching_era": 42.050000000000004,
+                      "pitching_intentionalwalks": 19,
+                      "pitching_wildpitches": 11,
+                      "pitching_hitbypitch": 15,
+                      "pitching_balk": 1,
+                      "pitching_battersfaced": 1346,
+                      "pitching_gamesfinished": 132,
+                      "pitching_runs": 152,
+                      "pitching_sacbunts": 17,
+                      "pitching_sacflys": 10,
+                      "pitching_gidp": 0
+                    },
+                    "fielding": 
+                    {
+                      "fielding_games": 298,
+                      "fielding_gamesstarted": 0,
+                      "fielding_innouts": 921,
+                      "fielding_putouts": 11,
+                      "fielding_assists": 28,
+                      "fielding_errors": 2,
+                      "fielding_doubleplay": 2,
+                      "fielding_passedballs": 0,
+                      "fielding_wildpitches": 0,
+                      "fielding_stolenbases": 0,
+                      "fielding_caughtstealing": 0,
+                      "fielding_zonerating": 0
+                    },
+                    "battingpost": null,
+                    "pitchingpost": null,
+                    "fieldingpost": null,
+                    "appearances": 
+                    {
+                      "G_all": 298,
+                      "GS": 0,
+                      "G_batting": 109,
+                      "G_defense": 298,
+                      "G_p": 298,
+                      "G_c": 0,
+                      "G_1b": 0,
+                      "G_2b": 0,
+                      "G_3b": 0,
+                      "G_ss": 0,
+                      "G_lf": 0,
+                      "G_cf": 0,
+                      "G_rf": 0,
+                      "G_of": 0,
+                      "G_dh": 0,
+                      "G_ph": 0,
+                      "G_pr": 0
+                        }
+                    },
+                    
+                    {
+                      "id": "e20123fa-8a02-4767-9e47-0a04e1d39050",
+                      "type": "reports",
+                      "attributes": 
+                      {
+                        "batting": 
+                        {
+                          "games": 3298,
+                          "atbats": 12364,
+                          "batting_runs": 2174,
+                          "batting_hits": 3771,
+                          "batting_doubles": 624,
+                          "batting_triples": 98,
+                          "batting_homeruns": 755,
+                          "batting_rbi": 2297,
+                          "batting_stolenbases": 240,
+                          "batting_caughtstealing": 73,
+                          "batting_walk": 1402,
+                          "batting_strikeout": 1383,
+                          "batting_intentionalwalks": 293,
+                          "batting_hitbypitch": 32,
+                          "batting_sacbunt": 21,
+                          "batting_sacfly": 121,
+                          "batting_gidp": 328,
+                          "avg": 0.30499838240051763,
+                          "slg": 0.5545131025558072,
+                          "obp": 0.3739492779653711,
+                          "ops": 0.9284623805211782,
+                          "iso": 0.24951472015528958,
+                          "babip": 0.29554140127388534,
+                          "pa": 13940.0,
+                          "tb": 6856.0
+                        },
+                        "pitching": null,
+                        "fielding": 
+                        {
+                          "fielding_games": 6019,
+                          "fielding_gamesstarted": 5712,
+                          "fielding_innouts": 150488,
+                          "fielding_putouts": 12926,
+                          "fielding_assists": 647,
+                          "fielding_errors": 259,
+                          "fielding_doubleplay": 258,
+                          "fielding_passedballs": 0,
+                          "fielding_wildpitches": 0,
+                          "fielding_stolenbases": 0,
+                          "fielding_caughtstealing": 0,
+                          "fielding_zonerating": 0
+                        },
+                        "battingpost": 
+                        {
+                          "battingpost_runs": 11,
+                          "battingpost_hits": 25,
+                          "battingpost_doubles": 4,
+                          "battingpost_triples": 1,
+                          "battingpost_homeruns": 6,
+                          "battingpost_rbi": 16,
+                          "battingpost_stolenbases": 0,
+                          "battingpost_caughtstealing": 0,
+                          "battingpost_walks": 5,
+                          "battingpost_strikeouts": 13,
+                          "battingpost_intentionalwalks": 0,
+                          "battingpost_hitbypitch": 0,
+                          "battingpost_sacbunts": 0,
+                          "battingpost_sacflys": 0,
+                          "battingpost_gidp": 2,
+                          "avgpost": 0.30499838240051763,
+                          "slgpost": 0.5545131025558072,
+                          "obppost": 0.3739492779653711,
+                          "opspost": 0.9284623805211782,
+                          "isopost": 0.24951472015528958,
+                          "babippost": 0.29554140127388534,
+                          "papost": 13940.0
+                        },
+                        "pitchingpost": null,
+                        "fieldingpost": 
+                        {
+                          "fieldingpost_games": 18,
+                          "fieldingpost_gamesstarted": 17,
+                          "fieldingpost_innouts": 453,
+                          "fieldingpost_putouts": 31,
+                          "fieldingpost_assists": 1,
+                          "fieldingpost_errors": 0,
+                          "fieldingpost_doubleplay": 0,
+                          "fieldingpost_passedballs": 0,
+                          "fieldingpost_stolenbases": 0,
+                          "fieldingpost_caughtstealing": 0
+                        },
+                        "appearances": 
+                        {
+                          "G_all": 3298,
+                          "GS": 288,
+                          "G_batting": 3298,
+                          "G_defense": 3057,
+                          "G_p": 0,
+                          "G_c": 0,
+                          "G_1b": 210,
+                          "G_2b": 43,
+                          "G_3b": 7,
+                          "G_ss": 0,
+                          "G_lf": 313,
+                          "G_cf": 293,
+                          "G_rf": 2184,
+                          "G_of": 2760,
+                          "G_dh": 196,
+                          "G_ph": 46,
+                          "G_pr": 0
+                        }
+                    }
+                }
+            ]
         }
