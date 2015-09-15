@@ -21,7 +21,7 @@ module FieldingReport
   end
 
   def fp
-    field = @player.fieldings.pluck(:fielding_putouts, :fielding_assits, :fielding_errors)
+    field = @player.fieldings.pluck(:fielding_putouts, :fielding_assists, :fielding_errors)
     (field.map{|f| f[0] ? f[0] : 0}.reduce(0, :+) + field.map{|f| f[1] ? f[1] : 0}.reduce(0, :+)) / (field.map{|f| f[0] ? f[0] : 0}.reduce(0, :+) +
     field.map{|f| f[1] ? f[1] : 0}.reduce(0, :+) + field.map{|f| f[2] ? f[2] : 0}.reduce(0, :+)).to_f
   end
