@@ -12,6 +12,11 @@ class PlayersController < ApplicationController
   end
 
   def report
-    render_json_api Player.find(params[:player_id]).report
+    if params[:player_id].include? ','
+      reports = Player.find(params[:player_id].split(',')).map(&:report)
+    else
+      reports = Player.find(params[:player_id]).report
+    end
+    render_json_api reports
   end
 end
