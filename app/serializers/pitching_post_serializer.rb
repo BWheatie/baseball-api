@@ -4,3 +4,4 @@ class PitchingPostSerializer < ActiveModel::Serializer
   attributes :pitchingpost_strikeouts, :pitchingpost_baopp, :pitchingpost_era, :pitchingpost_intentionalwalks, :pitchingpost_wildpitches
   attributes :pitchingpost_hitbypitch, :pitchingpost_balk, :pitchingpost_battersfaced, :pitchingpost_gamesfinished, :pitchingpost_runs, :pitchingpost_sacbunts
   attributes :pitchingpost_sacflys, :pitchingpost_gidp
+end
