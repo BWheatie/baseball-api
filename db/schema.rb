@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914221524) do
+ActiveRecord::Schema.define(version: 20150915195451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,8 @@ ActiveRecord::Schema.define(version: 20150914221524) do
     t.uuid    "player_id"
   end
 
+  add_index "battingposts", ["player_id"], name: "index_battingposts_on_player_id", using: :btree
+
   create_table "battings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer "yearID",                             default: 0, null: false
     t.integer "stint",                              default: 0, null: false
@@ -223,6 +225,8 @@ ActiveRecord::Schema.define(version: 20150914221524) do
     t.integer "G_old"
     t.uuid    "player_id"
   end
+
+  add_index "battings", ["player_id"], name: "index_battings_on_player_id", using: :btree
 
   create_table "fieldingofs", id: false, force: :cascade do |t|
     t.string  "playerID", limit: 18, default: "", null: false
@@ -253,6 +257,8 @@ ActiveRecord::Schema.define(version: 20150914221524) do
     t.uuid    "player_id"
   end
 
+  add_index "fieldingposts", ["player_id"], name: "index_fieldingposts_on_player_id", using: :btree
+
   create_table "fieldings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer "yearID",                            default: 0,  null: false
     t.integer "stint",                             default: 0,  null: false
@@ -273,6 +279,8 @@ ActiveRecord::Schema.define(version: 20150914221524) do
     t.float   "fielding_zonerating"
     t.uuid    "player_id"
   end
+
+  add_index "fieldings", ["player_id"], name: "index_fieldings_on_player_id", using: :btree
 
   create_table "managers", id: false, force: :cascade do |t|
     t.string  "playerID", limit: 20
@@ -320,6 +328,8 @@ ActiveRecord::Schema.define(version: 20150914221524) do
     t.uuid    "player_id"
   end
 
+  add_index "pitchingposts", ["player_id"], name: "index_pitchingposts_on_player_id", using: :btree
+
   create_table "pitchings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer "yearID",                              default: 0, null: false
     t.integer "stint",                               default: 0, null: false
@@ -353,6 +363,8 @@ ActiveRecord::Schema.define(version: 20150914221524) do
     t.uuid    "player_id"
   end
 
+  add_index "pitchings", ["player_id"], name: "index_pitchings_on_player_id", using: :btree
+
   create_table "players", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "legacy_id"
     t.integer  "birth_year"
@@ -377,6 +389,10 @@ ActiveRecord::Schema.define(version: 20150914221524) do
     t.datetime "debut"
     t.datetime "final_game"
   end
+
+  add_index "players", ["name_first"], name: "index_players_on_name_first", using: :btree
+  add_index "players", ["name_given"], name: "index_players_on_name_given", using: :btree
+  add_index "players", ["name_last"], name: "index_players_on_name_last", using: :btree
 
   create_table "teams", id: false, force: :cascade do |t|
     t.integer "yearID",                     default: 0,  null: false
