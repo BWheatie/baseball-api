@@ -7,7 +7,7 @@ module PitchingPostReport
 
   def self.optional_attrs
     [:pitchingpost_wins, :pitchingpost_losses, :pitchingpost_gamesstarted, :pitchingpost_completegames, :pitchingpost_shutouts, :pitchingpost_saves,
-    :pitchingpost_ipouts, :pitchingpost_hits, :pitchingpost_earenedruns, :pitchingpost_homeruns, :pitchingpost_walks, :pitchingpost_strikeouts, :pitchingpost_baopp,
+    :pitchingpost_ipouts, :pitchingpost_hits, :pitchingpost_earnedruns, :pitchingpost_homeruns, :pitchingpost_walks, :pitchingpost_strikeouts, :pitchingpost_baopp,
     :pitchingpost_era, :pitchingpost_intentionalwalks, :pitchingpost_wildpitches, :pitchingpost_hitbypitch, :pitchingpost_balk, :pitchingpost_battersfaced,
     :pitchingpost_gamesfinished, :pitchingpost_runs, :pitchingpost_sacbunts, :pitchingpost_sacflys, :pitchingpost_gidp]
   end
