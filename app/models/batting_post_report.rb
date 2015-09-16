@@ -37,10 +37,6 @@ module BattingPostReport
     self.slgpost - self.avgpost
   end
 
-  def babippost
-    self.babip
-  end
-
   def papost
     self.pa
   end

@@ -1,10 +1,10 @@
 module BattingReport
   def self.required_attrs
-    [:games, :atbats]
+    [:games]
   end
 
   def self.optional_attrs
-    [:batting_runs, :batting_hits, :batting_doubles, :batting_triples, :batting_homeruns, :batting_rbi, :batting_stolenbases,
+    [:atbats, :batting_runs, :batting_hits, :batting_doubles, :batting_triples, :batting_homeruns, :batting_rbi, :batting_stolenbases,
     :batting_caughtstealing, :batting_walk, :batting_strikeout, :batting_intentionalwalks, :batting_hitbypitch, :batting_sacbunt,
     :batting_sacfly, :batting_gidp]
   end
@@ -39,12 +39,6 @@ module BattingReport
 
   def iso
     self.slg - self.avg
-  end
-
-  def babip
-    bats = @player.battings.pluck(:batting_hits, :batting_homeruns, :batting_strikeout, :atbats, :batting_sacbunt)
-    (bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)) / (bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+) -
-    bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+) - bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+) - bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)).to_f
   end
 
   def pa
