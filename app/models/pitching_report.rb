@@ -6,7 +6,7 @@ module PitchingReport
   def self.optional_attrs
     [:pitching_wins, :pitching_losses, :pitching_gamesstarted, :pitching_completegames, :pitching_shutouts, :pitching_saves,
     :pitching_ipouts, :pitching_hits, :pitching_earnedruns, :pitching_homeruns, :pitching_walks, :pitching_strikeouts, :pitching_baopp,
-    :pitching_era, :pitching_intentionalwalks, :pitching_wildpitches, :pitching_hitbypitch, :pitching_balk, :pitching_battersfaced,
+    :pitching_intentionalwalks, :pitching_wildpitches, :pitching_hitbypitch, :pitching_balk, :pitching_battersfaced, :pitching_era,
     :pitching_gamesfinished, :pitching_runs, :pitching_sacbunts, :pitching_sacflys, :pitching_gidp]
   end
 
@@ -14,6 +14,14 @@ module PitchingReport
     define_method(stat) do
       StatHelper.sum_pitching_stat(@player, stat)
     end
+  end
+
+  def era
+    StatHelper.sum_pitching_stat(@player, :pitching_era) / @player.pitchings.count
+  end
+
+  def baopp
+    StatHelper.sum_pitching_stat(@player, :pitching_baopp) / @player.pitchings.count
   end
 
   def whip

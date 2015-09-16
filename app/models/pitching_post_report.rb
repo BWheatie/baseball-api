@@ -17,6 +17,15 @@ module PitchingPostReport
       StatHelper.sum_pitchingpost_stat(@player, stat)
     end
   end
+
+  def erapost
+    self.era
+  end
+
+  def baopppost
+    self.baopp
+  end
+
   def whippost
     self.whip
   end
