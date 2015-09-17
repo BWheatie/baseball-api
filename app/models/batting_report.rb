@@ -15,34 +15,22 @@ module BattingReport
     end
   end
 
+  def sum_batting_stat(stat)
+    StatHelper.sum_batting_stat(@player, stat)
+  end
+
   def avg
-    bats = @player.battings.pluck(:batting_hits, :atbats)
-    atbat_sum = bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+).to_f
-    batting_hits_sum = bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)
-    return 0 unless atbat_sum > 0
-    batting_hits_sum / atbat_sum
+    return 0 unless atbats >= 1
+    hits / atbats.to_f
   end
 
   def slg
-    bats = @player.battings.pluck(:batting_doubles, :batting_triples, :batting_homeruns, :atbats)
-    batting_doubles_sum = bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)
-    batting_triples_sum = bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)
-    batting_homeruns_sum = bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)
-    atbat_sum = bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+)
-    return 0 unless atbat_sum > 0
-    (single + (batting_doubles_sum*2) + (batting_triples_sum*3) + (batting_homeruns_sum*4)) / (atbats).to_f
+    return 0 unless atbats >= 1
+    (single + (doubles*2) + (triples*3) + (homeruns*4)) / (atbats).to_f
   end
 
   def obp
-    bats = @player.battings.pluck(:batting_hits, :batting_walk, :batting_hitbypitch, :atbats, :batting_sacfly)
-    batting_hits_sum = bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)
-    batting_walk_sum = bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)
-    batting_hitbypitch_sum = bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)
-    atbat_sum = bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+)
-    batting_sacfly_sum = bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)
-    return 0 unless atbat_sum > 0
-    (batting_hits_sum + batting_walk_sum + batting_hitbypitch_sum) /
-    (atbat_sum + batting_walk_sum + batting_hitbypitch_sum + batting_sacfly_sum).to_f
+    (hits + walks + hbp) / (atbats + walks + hbp + sacfly).to_f
   end
 
   def ops
@@ -54,33 +42,52 @@ module BattingReport
   end
 
   def pa
-    bats = @player.battings.pluck(:batting_sacbunt, :batting_walk, :batting_hitbypitch, :atbats, :batting_sacfly)
-    batting_sacbunt_sum = bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)
-    batting_walk_sum = bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)
-    batting_hitbypitch_sum = bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)
-    atbat_sum = bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+)
-    batting_sacfly_sum = bats.map{|b| b[4] ? b[4] : 0}.reduce(0, :+)
-
-    (batting_sacbunt_sum + batting_walk_sum + batting_hitbypitch_sum + atbat_sum + batting_sacbunt_sum).to_f
+    (sacbunt + walks + hbp + atbats + sacbunt).to_f
   end
 
   def tb
-    bats = @player.battings.pluck(:batting_doubles, :batting_triples, :batting_homeruns, :atbats)
-    batting_doubles_sum = bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)
-    batting_triples_sum = bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)
-    batting_homeruns_sum = bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)
-
-    (single + (batting_doubles_sum*2) + (batting_triples_sum*3) + (batting_homeruns_sum*4)).to_f
+    (single + (doubles*2) + (triples*3) + (homeruns*4)).to_f
   end
 
   private
-  def single
-    bats = @player.battings.pluck(:batting_hits, :batting_doubles, :batting_triples, :batting_homeruns)
-    batting_hits_sum = bats.map{|b| b[0] ? b[0] : 0}.reduce(0, :+)
-    batting_doubles_sum = bats.map{|b| b[1] ? b[1] : 0}.reduce(0, :+)
-    batting_triples_sum = bats.map{|b| b[2] ? b[2] : 0}.reduce(0, :+)
-    batting_homeruns_sum = bats.map{|b| b[3] ? b[3] : 0}.reduce(0, :+)
 
-    batting_hits_sum - (batting_doubles_sum + batting_triples_sum + batting_homeruns_sum.to_f)
+  def single
+    hits - (doubles + triples + homeruns).to_f
+  end
+
+  def hits
+    sum_batting_stat(:batting_hits)
+  end
+
+  def walks
+    sum_batting_stat(:batting_walk)
+  end
+
+  def atbats
+    sum_batting_stat(:atbats)
+  end
+
+  def doubles
+    sum_batting_stat(:batting_doubles)
+  end
+
+  def triples
+    sum_batting_stat(:batting_triples)
+  end
+
+  def homeruns
+    sum_batting_stat(:batting_homeruns)
+  end
+
+  def sacfly
+    sum_batting_stat(:batting_sacfly)
+  end
+
+  def sacbunt
+    sum_batting_stat(:batting_sacbunt)
+  end
+
+  def hbp
+    sum_batting_stat(:batting_hitbypitch)
   end
 end

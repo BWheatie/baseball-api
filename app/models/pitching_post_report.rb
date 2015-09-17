@@ -18,27 +18,44 @@ module PitchingPostReport
     end
   end
 
+  def sum_pitchingpost_stat(stat)
+    StatHelper.sum_pitchingpost_stat(@player, stat)
+  end
+
   def erapost
-    self.era
+    sum_pitchingpost_stat(:pitchingpost_era) / @player.pitchingposts.count.to_f
   end
 
   def baopppost
-    self.baopp
+    sum_pitchingpost_stat(:pitchingpost_baopp) / @player.pitchingposts.count.to_f
   end
 
   def whippost
-    self.whip
+    ip = self.ippost
+    return nil if ip == 0
+    walks = sum_pitchingpost_stat(:pitchingpost_walks)
+    hits = sum_pitchingpost_stat(:pitchingpost_hits)
+    (walks + hits) / ip.to_f
   end
 
   def sO9post
-    self.s09
+    brycepost :pitchingpost_strikeouts
   end
 
   def h9post
-    self.h9
+    brycepost :pitchingpost_hits
   end
 
-  def bb9post
-    self.bb9
+  def b9post
+    brycepost :pitchingpost_walks
+  end
+
+  def ippost
+    sum_pitchingpost_stat(:pitchingpost_ipouts).to_f / 3
+  end
+
+  def brycepost stat
+    return 0 unless self.ip > 0
+    9 * sum_pitchingpost_stat(stat) / self.ippost
   end
 end

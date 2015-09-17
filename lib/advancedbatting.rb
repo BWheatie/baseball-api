@@ -1,2 +1,0 @@
-class AdvancedBatting < BattingCareer
-end

@@ -16,19 +16,24 @@ module PitchingReport
     end
   end
 
+  def sum_pitching_stat(stat)
+    StatHelper.sum_pitching_stat(@player, stat)
+  end
+
   def era
-    StatHelper.sum_pitching_stat(@player, :pitching_era) / @player.pitchings.count
+    sum_pitching_stat(:pitching_era) / @player.pitchings.count
   end
 
   def baopp
-    StatHelper.sum_pitching_stat(@player, :pitching_baopp) / @player.pitchings.count
+    sum_pitching_stat(:pitching_baopp) / @player.pitchings.count
   end
 
   def whip
     ip = self.ip
     return nil if ip == 0
-    pitch = @player.pitchings.pluck(:pitching_walks, :pitching_hits).reject{ |p| p.nil? }
-    (pitch.map{|p| p[0] ? p[0] : 0}.reduce(0, :+) + pitch.map{|p| p[1] ? p[1] : 0}.reduce(0, :+)).to_f / ip
+    walks = sum_pitching_stat(:pitching_walks)
+    hits = sum_pitching_stat(:pitching_hits)
+    (walks + hits).to_f / ip
   end
 
   def sO9
@@ -44,10 +49,12 @@ module PitchingReport
   end
 
   def ip
-    StatHelper.sum_pitching_stat(@player, :pitching_ipouts) / 3
+    ipouts = sum_pitching_stat(:pitching_ipouts)
+    ipouts.to_f / 3
   end
 
   def bryce stat
-    9 * StatHelper.sum_pitching_stat(@player, stat) / self.ip
+    return 0 unless self.ip > 0
+    9 * sum_pitching_stat(stat) / self.ip
   end
 end
