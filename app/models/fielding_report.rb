@@ -23,6 +23,7 @@ module FieldingReport
     putouts = sum_fielding_stat(:fielding_putouts)
     assists = sum_fielding_stat(:fielding_assists)
     errors = sum_fielding_stat(:fielding_errors)
+    return 0 unless putouts > 0
     (putouts + assists) / (putouts + assists + errors).to_f
   end
 end

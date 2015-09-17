@@ -27,10 +27,12 @@ module BattingPostReport
   end
 
   def slgpost
+    return 0 unless atbatspost > 0
     (singlepost + (doublespost*2) + (triplespost*3) + (homerunspost*4)) / atbatspost.to_f
   end
 
   def obppost
+    return 0 unless atbatspost > 0
     (hitspost + walkspost + hbppost) / (atbatspost + walkspost + hbppost + sacflyspost).to_f
   end
 
