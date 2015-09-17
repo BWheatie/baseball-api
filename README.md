@@ -12,11 +12,11 @@ This API uses an open source historical database curated by Sean Lehman. In its 
 ###Getting Started
 
 ##Dependancies
-  *Ruby 2.2.2
-  *Postgresql
+  -Ruby 2.2.2
+  -Postgresql
 
 ##Installing
-  *Clone repo
-  *Run `script/setup`
-  *[Import Database](http://seanlahman.com/files/database/lahman-sql_2015-01-24.zip
-  *Run `script/server` to run migrations and get server started for local development
+  -Clone repo
+  -Run `script/setup`
+  -[Import Database](http://seanlahman.com/files/database/lahman-sql_2015-01-24.zip
+  -Run `script/server` to run migrations and get server started for local development
