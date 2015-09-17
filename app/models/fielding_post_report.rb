@@ -20,10 +20,11 @@ module FieldingPostReport
     StatHelper.sum_fieldingpost_stat(@player, stat)
   end
 
-  def fpouts
+  def fppost
     putouts = sum_fieldingpost_stat(:fieldingpost_putouts)
     assists = sum_fieldingpost_stat(:fieldingpost_assists)
     errors = sum_fieldingpost_stat(:fieldingpost_errors)
+    return 0 unless putouts >= 1
     (putouts + assists) / (putouts + assists + errors).to_f
   end
 end

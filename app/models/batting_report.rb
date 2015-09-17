@@ -30,6 +30,7 @@ module BattingReport
   end
 
   def obp
+    return 0 unless atbats >= 1
     (hits + walks + hbp) / (atbats + walks + hbp + sacfly).to_f
   end
 
@@ -42,7 +43,8 @@ module BattingReport
   end
 
   def pa
-    (sacbunt + walks + hbp + atbats + sacbunt).to_f
+    return 0 unless atbats >= 1
+    sacbunt + walks + hbp + atbats + sacbunt.to_f
   end
 
   def tb

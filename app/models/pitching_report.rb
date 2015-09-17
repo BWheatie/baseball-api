@@ -21,10 +21,12 @@ module PitchingReport
   end
 
   def era
+    return 0 unless @player.pitchings.count > 0
     sum_pitching_stat(:pitching_era) / @player.pitchings.count
   end
 
   def baopp
+    return 0 unless @player.pitchings.count > 0
     sum_pitching_stat(:pitching_baopp) / @player.pitchings.count
   end
 

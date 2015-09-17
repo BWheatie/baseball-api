@@ -32,6 +32,7 @@ module BattingPostReport
   end
 
   def obppost
+    return 0 unless atbatspost >= 1
     (hitspost + walkspost + hbppost) / (atbatspost + walkspost + hbppost + sacflyspost).to_f
   end
 
@@ -44,6 +45,7 @@ module BattingPostReport
   end
 
   def papost
+    return 0 unless atbatspost >= 1
     (sacbuntspost + walkspost + hbppost + atbatspost + sacbuntspost).to_f
   end
 
