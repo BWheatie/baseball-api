@@ -20,17 +20,17 @@ module BattingReport
   end
 
   def avg
-    return 0 unless atbats >= 1
+    return 0 unless atbats > 0
     hits / atbats.to_f
   end
 
   def slg
-    return 0 unless atbats >= 1
-    (single + (doubles*2) + (triples*3) + (homeruns*4)) / (atbats).to_f
+    return 0 unless atbats > 0
+    (single + (doubles*2) + (triples*3) + (homeruns*4)) / atbats.to_f
   end
 
   def obp
-    return 0 unless atbats >= 1
+    return 0 unless atbats > 0
     (hits + walks + hbp) / (atbats + walks + hbp + sacfly).to_f
   end
 
@@ -43,7 +43,6 @@ module BattingReport
   end
 
   def pa
-    return 0 unless atbats >= 1
     sacbunt + walks + hbp + atbats + sacbunt.to_f
   end
 
@@ -66,7 +65,7 @@ module BattingReport
   end
 
   def atbats
-    sum_batting_stat(:atbats)
+    @atbats ||= sum_batting_stat(:atbats)
   end
 
   def doubles

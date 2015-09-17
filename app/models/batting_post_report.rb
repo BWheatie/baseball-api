@@ -22,17 +22,14 @@ module BattingPostReport
   end
 
   def avgpost
-    return 0 unless atbatspost >= 1
     hitspost / atbatspost.to_f
   end
 
   def slgpost
-    return 0 unless atbatspost >= 1
     (singlepost + (doublespost*2) + (triplespost*3) + (homerunspost*4)) / atbatspost.to_f
   end
 
   def obppost
-    return 0 unless atbatspost >= 1
     (hitspost + walkspost + hbppost) / (atbatspost + walkspost + hbppost + sacflyspost).to_f
   end
 
@@ -45,7 +42,6 @@ module BattingPostReport
   end
 
   def papost
-    return 0 unless atbatspost >= 1
     (sacbuntspost + walkspost + hbppost + atbatspost + sacbuntspost).to_f
   end
 
@@ -68,7 +64,7 @@ module BattingPostReport
   end
 
   def atbatspost
-    sum_battingpost_stat(:battingpost_atbats)
+    @atbatspost ||= sum_battingpost_stat(:battingpost_atbats)
   end
 
   def doublespost
