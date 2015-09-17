@@ -15,14 +15,14 @@ module FieldingReport
     end
   end
 
-  def sum_fielding_stat(fielding)
-    fields = @player.fieldings.pluck(fielding).reject{|f| f.nil?}
-    fields.reduce(0, :+)
+  def sum_fielding_stat(stat)
+    StatHelper.sum_fielding_stat(@player, stat)
   end
 
   def fp
-    field = @player.fieldings.pluck(:fielding_putouts, :fielding_assists, :fielding_errors)
-    (field.map{|f| f[0] ? f[0] : 0}.reduce(0, :+) + field.map{|f| f[1] ? f[1] : 0}.reduce(0, :+)) / (field.map{|f| f[0] ? f[0] : 0}.reduce(0, :+) +
-    field.map{|f| f[1] ? f[1] : 0}.reduce(0, :+) + field.map{|f| f[2] ? f[2] : 0}.reduce(0, :+)).to_f
+    putouts = sum_fielding_stat(:fielding_putouts)
+    assists = sum_fielding_stat(:fielding_assists)
+    errors = sum_fielding_stat(:fielding_errors)
+    (putouts + assists) / (putouts + assists + errors).to_f
   end
 end
