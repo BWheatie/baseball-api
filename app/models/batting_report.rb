@@ -11,12 +11,12 @@ module BattingReport
 
   (self.required_attrs + self.optional_attrs).each do |stat|
     define_method(stat) do
-      StatHelper.sum_batting_stat(@player, stat)
+      sum_batting_stat(stat)
     end
   end
 
   def sum_batting_stat(stat)
-    StatHelper.sum_batting_stat(@player, stat)
+    @cache[stat] ||= StatHelper.sum_batting_stat(@player, stat)
   end
 
   def avg
@@ -53,7 +53,7 @@ module BattingReport
   private
 
   def single
-    hits - (doubles + triples + homeruns).to_f
+    @cache[:single] ||= hits - (doubles + triples + homeruns).to_f
   end
 
   def hits
@@ -65,7 +65,7 @@ module BattingReport
   end
 
   def atbats
-    @atbats ||= sum_batting_stat(:atbats)
+    sum_batting_stat(:atbats)
   end
 
   def doubles

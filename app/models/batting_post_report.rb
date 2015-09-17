@@ -13,15 +13,16 @@ module BattingPostReport
 
   (self.required_attrs + self.optional_attrs).each do |stat|
     define_method(stat) do
-      StatHelper.sum_battingpost_stat(@player, stat)
+      sum_battingpost_stat(stat)
     end
   end
 
   def sum_battingpost_stat(stat)
-    StatHelper.sum_battingpost_stat(@player, stat)
+    @cache[stat] ||= StatHelper.sum_battingpost_stat(@player, stat)
   end
 
   def avgpost
+    return 0 unless atbatspost > 0
     hitspost / atbatspost.to_f
   end
 

@@ -13,6 +13,7 @@ class Report
   attr_reader :player
 
   def initialize player
+    @cache = {}
     @player = player
   end
 
