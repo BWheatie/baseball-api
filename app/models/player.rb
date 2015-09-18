@@ -15,8 +15,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.search(query)
-    q = "%#{query}%"
-    Player.where("name_first ILIKE ? OR name_last ILIKE ?", q, q)
+    Player.where("name_first || ' ' || name_last ILIKE (?)", "%#{query}%")
   end
 
 end
