@@ -1,3 +1,5 @@
 class AppearancesSerializer < ApplicationSerializer
-  attributes :G_all, :GS, :G_batting, :G_defense, :G_p, :G_c, :G_1b, :G_2b, :G_3b, :G_ss, :G_lf, :G_cf, :G_rf, :G_rf, :G_of, :G_dh, :G_ph, :G_pr
+  attributes :all_games, :games_started, :games_batting, :games_defense, :games_pitched, :games_catcher, :games_firstbase,
+      :games_secondbase, :games_thirdbase, :games_shortstop, :games_leftfield, :games_centerfield,
+      :games_rightfield, :games_outfield, :games_designatedhitter, :games_pinchhitter, :games_pinchrunner
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915195451) do
+ActiveRecord::Schema.define(version: 20160524024519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,32 +144,27 @@ ActiveRecord::Schema.define(version: 20150915195451) do
   end
 
   create_table "appearances", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "yearID",              default: 0,  null: false
-    t.string  "teamID",    limit: 6, default: "", null: false
-    t.string  "lgID",      limit: 4
-    t.integer "G_all"
-    t.integer "GS"
-    t.integer "G_batting"
-    t.integer "G_defense"
-    t.integer "G_p"
-    t.integer "G_c"
-    t.integer "G_1b"
-    t.integer "G_2b"
-    t.integer "G_3b"
-    t.integer "G_ss"
-    t.integer "G_lf"
-    t.integer "G_cf"
-    t.integer "G_rf"
-    t.integer "G_of"
-    t.integer "G_dh"
-    t.integer "G_ph"
-    t.integer "G_pr"
+    t.integer "yearID",                           default: 0,  null: false
+    t.string  "teamID",                 limit: 6, default: "", null: false
+    t.string  "lgID",                   limit: 4
+    t.integer "all_games"
+    t.integer "games_started"
+    t.integer "games_batting"
+    t.integer "games_defense"
+    t.integer "games_pitched"
+    t.integer "games_catcher"
+    t.integer "games_firstbase"
+    t.integer "games_secondbase"
+    t.integer "games_thirdbase"
+    t.integer "games_shortstop"
+    t.integer "games_leftfield"
+    t.integer "games_centerfield"
+    t.integer "games_rightfield"
+    t.integer "games_outfield"
+    t.integer "games_designatedhitter"
+    t.integer "games_pinchhitter"
+    t.integer "games_pinchrunner"
     t.uuid    "player_id"
-  end
-
-  create_table "appearences", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "battingposts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
