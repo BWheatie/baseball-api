@@ -11,29 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524024519) do
+ActiveRecord::Schema.define(version: 20160524031441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
-
-  create_table "AwardsManagers", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 20,  default: "", null: false
-    t.string  "awardID",  limit: 150, default: "", null: false
-    t.integer "yearID",               default: 0,  null: false
-    t.string  "lgID",     limit: 4,   default: "", null: false
-    t.string  "tie",      limit: 2
-    t.string  "notes",    limit: 200
-  end
-
-  create_table "AwardsPlayers", id: false, force: :cascade do |t|
-    t.string  "playerID", limit: 18,  default: "", null: false
-    t.string  "awardID",  limit: 510, default: "", null: false
-    t.integer "yearID",               default: 0,  null: false
-    t.string  "lgID",     limit: 4,   default: "", null: false
-    t.string  "tie",      limit: 2
-    t.string  "notes",    limit: 200
-  end
 
   create_table "AwardsShareManagers", id: false, force: :cascade do |t|
     t.string  "awardID",    limit: 50, default: "", null: false
@@ -43,16 +25,6 @@ ActiveRecord::Schema.define(version: 20160524024519) do
     t.integer "pointsWon"
     t.integer "pointsMax"
     t.integer "votesFirst"
-  end
-
-  create_table "AwardsSharePlayers", id: false, force: :cascade do |t|
-    t.string  "awardID",    limit: 50, default: "", null: false
-    t.integer "yearID",                default: 0,  null: false
-    t.string  "lgID",       limit: 4,  default: "", null: false
-    t.string  "playerID",   limit: 18, default: "", null: false
-    t.float   "pointsWon"
-    t.integer "pointsMax"
-    t.float   "votesFirst"
   end
 
   create_table "CollegePlaying", id: false, force: :cascade do |t|
@@ -277,6 +249,15 @@ ActiveRecord::Schema.define(version: 20160524024519) do
 
   add_index "fieldings", ["player_id"], name: "index_fieldings_on_player_id", using: :btree
 
+  create_table "manager_awards", id: false, force: :cascade do |t|
+    t.string  "playerID", limit: 20,  default: "", null: false
+    t.string  "awardID",  limit: 150, default: "", null: false
+    t.integer "yearID",               default: 0,  null: false
+    t.string  "lgID",     limit: 4,   default: "", null: false
+    t.string  "tie",      limit: 2
+    t.string  "notes",    limit: 200
+  end
+
   create_table "managers", id: false, force: :cascade do |t|
     t.string  "playerID", limit: 20
     t.integer "yearID",              default: 0,  null: false
@@ -360,6 +341,15 @@ ActiveRecord::Schema.define(version: 20160524024519) do
 
   add_index "pitchings", ["player_id"], name: "index_pitchings_on_player_id", using: :btree
 
+  create_table "player_awards", id: false, force: :cascade do |t|
+    t.string  "playerID", limit: 18,  default: "", null: false
+    t.string  "awardID",  limit: 510, default: "", null: false
+    t.integer "yearID",               default: 0,  null: false
+    t.string  "lgID",     limit: 4,   default: "", null: false
+    t.string  "tie",      limit: 2
+    t.string  "notes",    limit: 200
+  end
+
   create_table "players", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "legacy_id"
     t.integer  "birth_year"
@@ -388,6 +378,16 @@ ActiveRecord::Schema.define(version: 20160524024519) do
   add_index "players", ["name_first"], name: "index_players_on_name_first", using: :btree
   add_index "players", ["name_given"], name: "index_players_on_name_given", using: :btree
   add_index "players", ["name_last"], name: "index_players_on_name_last", using: :btree
+
+  create_table "shared_player_awards", id: false, force: :cascade do |t|
+    t.string  "awardID",    limit: 50, default: "", null: false
+    t.integer "yearID",                default: 0,  null: false
+    t.string  "lgID",       limit: 4,  default: "", null: false
+    t.string  "playerID",   limit: 18, default: "", null: false
+    t.float   "pointsWon"
+    t.integer "pointsMax"
+    t.float   "votesFirst"
+  end
 
   create_table "teams", id: false, force: :cascade do |t|
     t.integer "yearID",                     default: 0,  null: false
